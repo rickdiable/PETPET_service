@@ -14266,6 +14266,12 @@ ol {
   border-top-right-radius: calc(0.25rem - 1px);
 }
 
+.custom-adopt-card-img-top {
+  height: 172px;
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}
+
 .carousel {
   margin-bottom: 188px;
 }
