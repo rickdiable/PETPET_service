@@ -1,0 +1,20 @@
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+a {
+  display: block;
+}
+
+ul,
+ol {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 0;
+}

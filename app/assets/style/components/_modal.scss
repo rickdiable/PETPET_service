@@ -1,0 +1,18 @@
+.modal-img {
+  width: 100px;
+  height: 100px;
+  @include media-breakpoint-up(md) {
+    width: 150px;
+    height: 150px;
+  }
+  @include media-breakpoint-up(lg) {
+    width: 282px;
+    height: 282px;
+  }
+}
+
+.modal-btn-group {
+  @include media-breakpoint-up(lg) {
+    width: 284px;
+  }
+}

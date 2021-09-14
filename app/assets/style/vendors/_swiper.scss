@@ -1,0 +1,22 @@
+// 隱藏套件預設 prev 箭頭
+.swiper-button-prev {
+  display: none;
+}
+
+.swiper-button-next {
+  padding: 25px;
+  right: 5.4%;
+  span {
+    color: $primary;
+    background: $white;
+    font-size: 50px;
+    &:hover {
+      color: darken($primary, 5%);
+    }
+  }
+}
+
+// 隱藏套件預設 next 箭頭
+.swiper-button-next:after {
+  display: none;
+}

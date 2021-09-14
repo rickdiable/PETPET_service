@@ -1,0 +1,37 @@
+.carousel {
+  margin-bottom: 188px;
+  @include media-breakpoint-down(md) {
+    margin-bottom: 40px;
+  }
+  &-item-active {
+    width: 540px;
+    height: 440px;
+    @include media-breakpoint-down(md) {
+      height: 221px;
+      width: 270px;
+    }
+    @include media-breakpoint-down(sm) {
+      height: 282px;
+      width: 100%;
+    }
+  }
+  &-items {
+    &:last-child img {
+      margin-right: 0;
+    }
+    &-img {
+      width: 96px;
+      height: 96px;
+      margin-right: 8px;
+      @include media-breakpoint-down(md) {
+        height: 63px;
+        width: 63px;
+        margin-right: 6px;
+      }
+      @include media-breakpoint-down(sm) {
+        height: 82px;
+        width: 82px;
+      }
+    }
+  }
+}

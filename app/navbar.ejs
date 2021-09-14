@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
+  <div class="container-fluid container-md">
+    <h1>
+      <a class="navbar-logo" href="index.html">PETPET</a>
+    </h1>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="adopt.html">領養毛孩</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="detail.html">預約服務</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login.html">成為寵物保姆</a>
+        </li>
+        <% if (current=='member' ){%>
+          <%- include('member.ejs') %>
+            <% }else{ %>
+              <%- include('login.ejs') %>
+                <% }%>
+      </ul>
+    </div>
+  </div>
+</nav>

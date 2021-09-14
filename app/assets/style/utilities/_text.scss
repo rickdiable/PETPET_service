@@ -1,0 +1,26 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @each $size, $value in $font-size {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+      .font#{$infix}-#{$size} { font-size: $value !important; }
+    }
+  }
+}
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @each $weight, $value in $font-weight {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+      .font-weight#{$infix}-#{$weight} { font-weight: $value !important; }
+    }
+  }
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
+}
+
+.custom-font-size-80{
+  font-size: 80px;
+}

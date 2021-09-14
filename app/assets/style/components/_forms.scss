@@ -1,0 +1,18 @@
+.custom-input-width {
+  width: 224px;
+  @include media-breakpoint-down(sm) {
+    max-width: 241px;
+  }
+}
+
+.custom-select-width {
+  width: 120px;
+  @include media-breakpoint-down(sm) {
+    max-width: 80px;
+  }
+}
+
+.btn-close-hover:hover {
+  transition: 0.5s;
+  background: $light;
+}

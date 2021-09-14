@@ -1,0 +1,22 @@
+.custom-border {
+  margin-top: 100px;
+  margin-bottom: 52px;
+  @include media-breakpoint-down(sm) {
+    margin-top: 47px;
+    margin-bottom: 65px;
+  }
+  &-left {
+    border-left: 2px solid $white;
+    padding-bottom: 110px;
+    @include media-breakpoint-down(sm) {
+      padding-bottom: 18px;
+    }
+  }
+}
+
+.border-2 {
+  border: 2px solid;
+}
+// .border-top-2 {
+//   border-top: 2px solid;
+// }

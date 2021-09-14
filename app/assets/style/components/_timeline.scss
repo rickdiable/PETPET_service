@@ -1,0 +1,30 @@
+.timeline {
+  position: relative;
+  display: flex;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: $secondary;
+  }
+  &-pointer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    font-weight: 500;
+    &:before {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      transform: translateY(-33%);
+      background-color: $secondary;
+    }
+  }
+  p {
+    margin-top: 8px;
+  }
+}

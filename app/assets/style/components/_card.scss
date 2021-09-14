@@ -1,0 +1,73 @@
+// 頭像向上嵌入卡頭圖片中
+.card-img-circle {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card-top-img-height {
+  height: 120px;
+}
+
+.custom-card-img-overlay {
+  padding-top: 350px;
+  @include media-breakpoint-down(md) {
+    padding-top: 210px;
+  }
+  @include media-breakpoint-down(sm) {
+    padding-top: 132px;
+  }
+  &-sm {
+    padding-top: 172px;
+    @include media-breakpoint-down(md) {
+      padding-top: 103px;
+    }
+    @include media-breakpoint-down(sm) {
+      padding-top: 132px;
+    }
+  }
+}
+
+.card-img-overlay {
+  background: rgba(#000, 0.4);
+  transition: 0.5s;
+  &:hover {
+    background: transparent;
+  }
+}
+
+.card-link:hover {
+  background: $warning;
+}
+
+.card-label {
+  width: 128px;
+  height: 128px;
+  color: $dark;
+  cursor: pointer;
+  @include media-breakpoint-down(xs) {
+    width: 72px;
+    height: 72px;
+  }
+}
+.card-input {
+  &:checked + .card-label {
+    border: 3px solid $secondary;
+    .card-label-icon {
+      color: $warning;
+    }
+    @include media-breakpoint-down(xs) {
+      border: 2px solid $secondary;
+    }
+    .card-text {
+      color: $primary;
+    }
+  }
+}
+
+.custom-card-img-top {
+  height: 128px;
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}

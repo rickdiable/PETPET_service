@@ -1,0 +1,468 @@
+---
+title: PETPET | 寵物寄宿
+layout: ./app/layout.ejs
+engine: ejs
+current: service
+footer: footer
+---
+<header>
+  <div class="container mb-3 mb-md-11">
+    <div class="row flex-row-reverse py-0 py-md-11">
+      <div class="col-md-7 col-lg-8 px-0 px-md-4 mb-3 mb-md-0" data-aos="fade-right">
+        <img src="./assets/images/homestay-1.png" alt="homestay">
+      </div>
+
+      <div class="col-md-5 col-lg-4 d-flex flex-column justify-content-center" data-aos="fade-left">
+        <h2 class="font-xl font-md-4xl text-center text-md-left mb-1 mb-md-2 mb-lg-4">寵物寄宿</h2>
+        <h3 class="font-m font-md-l text-center text-md-left">給您的毛孩最舒適的環境</h3>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container-fluid bg-warning py-4">
+    <form class="form-row align-items-center" action="#">
+      <div class="col-3 col-md-2 col-lg-1 mb-2 mb-md-0">
+        <select class="custom-select">
+          <option value="貓" selected>貓</option>
+          <option value="狗">狗</option>
+          <option value="天竺鼠">天竺鼠</option>
+          <option value="鳥類">鳥類</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2 mb-2 mb-md-0">
+        <select class="custom-select">
+          <option value="高雄市" selected>高雄市</option>
+          <option value="台北市">台北市</option>
+          <option value="新北市">新北市</option>
+          <option value="台南市">台南市</option>
+          <option value="桃園市">桃園市</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2">
+        <input class="form-control" type="date" value="2020-11-20" />
+      </div>
+      <span class="d-none d-md-inline px-1">至</span>
+      <div class="col-6 col-md-3 col-lg-2">
+        <input class="form-control" type="date" value="2020-11-21" />
+      </div>
+    </form>
+  </div>
+</header>
+
+<section class="py-11 py-lg-13 section-swiper">
+  <div class="container">
+    <h3 class="font-xxl mb-3">本月熱門寄宿</h3>
+  </div>
+  <!-- swiper start -->
+  <div class="position-relative d-none d-lg-block mb-9 mb-md-11 mb-lg-13">
+    <div class="swiper-container pb-2">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="card shadow-sm p-1">
+            <div class="card-top-img-height"
+              style="background: url('./assets/images/index-2.jpeg') center 60% / cover;">
+            </div>
+            <div class="card-body text-center position-relative pt-11 pb-7">
+              <img src="./assets/images/person-1.png" class="card-img-circle" alt="person pic">
+              <h4 class="font-m font-weight-normal mb-1">Jamie</h4>
+              <p class="mb-3">寄宿、美容、寵物行為訓練</p>
+              <a href="#" class="btn btn-secondary py-3 px-12 mb-6">預約</a>
+              <div class="row no-gutters">
+                <div class="col">
+                  <p class="mb-3">獲得評價</p>
+                  <span class="align-middle font-xl font-weight-bold">198</span>
+                  <span class="align-middle font-s">則</span>
+                </div>
+                <div class="col">
+                  <p class="mb-3">已完成訂單</p>
+                  <span class="align-middle font-xl font-weight-bold">580</span>
+                  <span class="align-middle font-s">件</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="card shadow-sm p-1">
+            <div class="card-top-img-height"
+              style="background: url('./assets/images/index-3.jpeg') center 30% / cover;">
+            </div>
+            <div class="card-body text-center position-relative pt-11 pb-7">
+              <img src="./assets/images/person-2.png" class="card-img-circle" alt="person pic">
+              <h4 class="font-m font-weight-normal mb-1">Eric</h4>
+              <p class="mb-3">寄宿、美容</p>
+              <a href="#" class="btn btn-secondary py-3 px-12 mb-6">預約</a>
+              <div class="row no-gutters">
+                <div class="col">
+                  <p class="mb-3">獲得評價</p>
+                  <span class="align-middle font-xl font-weight-bold">76</span>
+                  <span class="align-middle font-s">則</span>
+                </div>
+                <div class="col">
+                  <p class="mb-3">已完成訂單</p>
+                  <span class="align-middle font-xl font-weight-bold">208</span>
+                  <span class="align-middle font-s">件</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="card shadow-sm p-1">
+            <div class="card-top-img-height"
+              style="background: url('./assets/images/index-4.jpeg') center 60% / cover;">
+            </div>
+            <div class="card-body text-center position-relative pt-11 pb-7">
+              <img src="./assets/images/person-3.png" class="card-img-circle" alt="person pic">
+              <h4 class="font-m font-weight-normal mb-1">Yvonne</h4>
+              <p class="mb-3">寄宿、美容、寵物行為訓練</p>
+              <a href="#" class="btn btn-secondary py-3 px-12 mb-6">預約</a>
+              <div class="row no-gutters">
+                <div class="col">
+                  <p class="mb-3">獲得評價</p>
+                  <span class="align-middle font-xl font-weight-bold">52</span>
+                  <span class="align-middle font-s">則</span>
+                </div>
+                <div class="col">
+                  <p class="mb-3">已完成訂單</p>
+                  <span class="align-middle font-xl font-weight-bold">196</span>
+                  <span class="align-middle font-s">件</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next">
+      <span class="material-icons">play_circle_filled</span>
+    </div>
+    <div class="swiper-button-prev"></div>
+  </div>
+  <!-- swiper end -->
+  <div class="container mb-9 mb-md-11 mb-lg-13">
+    <ul class="row d-flex d-lg-none">
+      <li class="col-md-4 mb-3 mb-md-3">
+        <div class="card shadow-sm p-1">
+          <div class="card-top-img-height" style="background: url('./assets/images/index-2.jpeg') center 60% / cover;">
+          </div>
+          <div class="card-body text-center position-relative pt-11 pb-7">
+            <img src="./assets/images/person-1.png" class="card-img-circle" alt="person pic">
+            <h4 class="font-m font-weight-normal mb-1">Jamie</h4>
+            <p class="mb-3">寄宿、美容、寵物行為訓練</p>
+            <a href="#" class="btn btn-secondary py-3 px-12 mb-6">預約</a>
+            <div class="row no-gutters">
+              <div class="col">
+                <p class="mb-3">獲得評價</p>
+                <span class="align-middle font-xl font-weight-bold">198</span>
+                <span class="align-middle font-s">則</span>
+              </div>
+              <div class="col">
+                <p class="mb-3">已完成訂單</p>
+                <span class="align-middle font-xl font-weight-bold">580</span>
+                <span class="align-middle font-s">件</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="col-md-4 mb-3 mb-md-3">
+        <div class="card shadow-sm p-1">
+          <div class="card-top-img-height" style="background: url('./assets/images/index-3.jpeg') center 30% / cover;">
+          </div>
+          <div class="card-body text-center position-relative pt-11 pb-7">
+            <img src="./assets/images/person-2.png" class="card-img-circle" alt="person pic">
+            <h4 class="font-m font-weight-normal mb-1">Eric</h4>
+            <p class="mb-3">寄宿、美容</p>
+            <a href="#" class="btn btn-secondary py-3 px-12 mb-6">預約</a>
+            <div class="row no-gutters">
+              <div class="col">
+                <p class="mb-3">獲得評價</p>
+                <span class="align-middle font-xl font-weight-bold">76</span>
+                <span class="align-middle font-s">則</span>
+              </div>
+              <div class="col">
+                <p class="mb-3">已完成訂單</p>
+                <span class="align-middle font-xl font-weight-bold">208</span>
+                <span class="align-middle font-s">件</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="col-md-4 mb-3 mb-md-3">
+        <div class="card shadow-sm p-1">
+          <div class="card-top-img-height" style="background: url('./assets/images/index-4.jpeg') center 60% / cover;">
+          </div>
+          <div class="card-body text-center position-relative pt-11 pb-7">
+            <img src="./assets/images/person-3.png" class="card-img-circle" alt="person pic">
+            <h4 class="font-m font-weight-normal mb-1">Yvonne</h4>
+            <p class="mb-3">寄宿、美容、寵物行為訓練</p>
+            <a href="#" class="btn btn-secondary py-3 px-12 mb-6">預約</a>
+            <div class="row no-gutters">
+              <div class="col">
+                <p class="mb-3">獲得評價</p>
+                <span class="align-middle font-xl font-weight-bold">52</span>
+                <span class="align-middle font-s">則</span>
+              </div>
+              <div class="col">
+                <p class="mb-3">已完成訂單</p>
+                <span class="align-middle font-xl font-weight-bold">196</span>
+                <span class="align-middle font-s">件</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <ul class="row card-group mb--3 mb-md--5 mb-lg--8">
+      <li class="card-group-item col-6 col-md-4 col-lg-3 mb-3 mb-md-5 mb-lg-8
+      hvr-bob">
+        <div class="card shadow-sm bg-gray-100">
+          <a href="#">
+            <div class="custom-card-img-top"
+              style="background: url('./assets/images/homestay-2.jpeg') 50% 50% / cover;">
+            </div>
+            <div class="card-body py-2 px-3 px-lg-4">
+              <h5 class="font-weight-normal mb-1">寵屋屋</h5>
+              <div class="mb-1">
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+              </div>
+              <p class="font-s mb-5">寄宿、美容洗澡、到府保姆</p>
+            </div>
+          </a>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" class="card-link w-50 text-center py-3">聯繫</a>
+            <a href="#" class="card-link w-50 text-center text-secondary py-3">預約</a>
+          </div>
+        </div>
+      </li>
+      <li class="card-group-item col-6 col-md-4 col-lg-3 mb-3 mb-md-5 mb-lg-8
+      hvr-bob">
+        <div class="card shadow-sm bg-gray-100">
+          <a href="#">
+            <div class="custom-card-img-top"
+              style="background: url('./assets/images/homestay-3.jpeg') 50% 50% / cover;">
+            </div>
+            <div class="card-body py-2 px-3 px-lg-4">
+              <h5 class="font-weight-normal mb-1">毛孩好家</h5>
+              <div class="mb-1">
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+              </div>
+              <p class="font-s mb-5">寄宿、美容洗澡、到府保姆</p>
+            </div>
+          </a>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" class="card-link w-50 text-center py-3">聯繫</a>
+            <a href="detail.html" class="card-link w-50 text-center text-secondary py-3">預約</a>
+          </div>
+        </div>
+      </li>
+      <li class="card-group-item col-6 col-md-4 col-lg-3 mb-3 mb-md-5 mb-lg-8
+      hvr-bob">
+        <div class="card shadow-sm bg-gray-100">
+          <a href="#">
+            <div class="custom-card-img-top"
+              style="background: url('./assets/images/homestay-4.jpeg') 50% 50% / cover;">
+            </div>
+            <div class="card-body py-2 px-3 px-lg-4">
+              <h5 class="font-weight-normal mb-1">妖貓X僕SS</h5>
+              <div class="mb-1">
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+              </div>
+              <p class="font-s mb-5">寄宿、美容洗澡</p>
+            </div>
+          </a>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" class="card-link w-50 text-center py-3">聯繫</a>
+            <a href="#" class="card-link w-50 text-center text-secondary py-3">預約</a>
+          </div>
+        </div>
+      </li>
+      <li class="card-group-item col-6 col-md-4 col-lg-3 mb-3 mb-md-5 mb-lg-8
+      hvr-bob">
+        <div class="card shadow-sm bg-gray-100">
+          <a href="#">
+            <div class="custom-card-img-top"
+              style="background: url('./assets/images/homestay-5.jpeg') 50% 50% / cover;">
+            </div>
+            <div class="card-body py-2 px-3 px-lg-4">
+              <h5 class="font-weight-normal mb-1">貓是主我是僕</h5>
+              <div class="mb-1">
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+              </div>
+              <p class="font-s mb-5">寄宿、美容洗澡、到府保姆</p>
+            </div>
+          </a>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" class="card-link w-50 text-center py-3">聯繫</a>
+            <a href="#" class="card-link w-50 text-center text-secondary py-3">預約</a>
+          </div>
+        </div>
+      </li>
+      <li class="card-group-item col-6 col-md-4 col-lg-3 mb-3 mb-md-5 mb-lg-8
+      hvr-bob">
+        <div class="card shadow-sm bg-gray-100">
+          <a href="#">
+            <div class="custom-card-img-top"
+              style="background: url('./assets/images/homestay-6.jpeg') 50% 50% / cover;">
+            </div>
+            <div class="card-body py-2 px-3 px-lg-4">
+              <h5 class="font-weight-normal mb-1">汪汪隊</h5>
+              <div class="mb-1">
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+              </div>
+              <p class="font-s mb-5">寄宿、到府保姆、寵物行為訓練</p>
+            </div>
+          </a>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" class="card-link w-50 text-center py-3">聯繫</a>
+            <a href="#" class="card-link w-50 text-center text-secondary py-3">預約</a>
+          </div>
+        </div>
+      </li>
+      <li class="card-group-item col-6 col-md-4 col-lg-3 mb-3 mb-md-5 mb-lg-8
+      hvr-bob">
+        <div class="card shadow-sm bg-gray-100">
+          <a href="#">
+            <div class="custom-card-img-top"
+              style="background: url('./assets/images/homestay-7.jpeg') 50% 50% / cover;">
+            </div>
+            <div class="card-body py-2 px-3 px-lg-4">
+              <h5 class="font-weight-normal mb-1">卯咪</h5>
+              <div class="mb-1">
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+              </div>
+              <p class="font-s mb-5">寄宿、寵物行為訓練</p>
+            </div>
+          </a>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" class="card-link w-50 text-center py-3">聯繫</a>
+            <a href="#" class="card-link w-50 text-center text-secondary py-3">預約</a>
+          </div>
+        </div>
+      </li>
+      <li class="card-group-item col-6 col-md-4 col-lg-3 mb-3 mb-md-5 mb-lg-8
+      hvr-bob">
+        <div class="card shadow-sm bg-gray-100">
+          <a href="#">
+            <div class="custom-card-img-top" style="background: url('./assets/images/index-2.jpeg') 50% 50% / cover;">
+            </div>
+            <div class="card-body py-2 px-3 px-lg-4">
+              <h5 class="font-weight-normal mb-1">貓狗大戰</h5>
+              <div class="mb-1">
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+              </div>
+              <p class="font-s mb-5">寄宿、美容洗澡、到府保姆</p>
+            </div>
+          </a>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" class="card-link w-50 text-center py-3">聯繫</a>
+            <a href="#" class="card-link w-50 text-center text-secondary py-3">預約</a>
+          </div>
+        </div>
+      </li>
+      <li class="card-group-item col-6 col-md-4 col-lg-3 mb-3 mb-md-5 mb-lg-8
+      hvr-bob">
+        <div class="card shadow-sm bg-gray-100">
+          <a href="#">
+            <div class="custom-card-img-top"
+              style="background: url('./assets/images/homestay-8.jpeg') 50% 50% / cover;">
+            </div>
+            <div class="card-body py-2 px-3 px-lg-4">
+              <h5 class="font-weight-normal mb-1">萌寵底家</h5>
+              <div class="mb-1">
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+              </div>
+              <p class="font-s mb-5">寄宿、到府保姆</p>
+            </div>
+          </a>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" class="card-link w-50 text-center py-3">聯繫</a>
+            <a href="#" class="card-link w-50 text-center text-secondary py-3">預約</a>
+          </div>
+        </div>
+      </li>
+      <li class="card-group-item d-none d-md-block d-lg-none col-6 col-md-4 col-lg-3 mb-3 mb-md-5 mb-lg-8
+      hvr-bob">
+        <div class="card shadow-sm bg-gray-100">
+          <a href="#">
+            <div class="custom-card-img-top"
+              style="background: url('./assets/images/homestay-8.jpeg') 50% 50% / cover;">
+            </div>
+            <div class="card-body py-2 px-3 px-lg-4">
+              <h5 class="font-weight-normal mb-1">萌寵底家</h5>
+              <div class="mb-1">
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+                <span class="material-icons text-warning font-base">star</span>
+              </div>
+              <p class="font-s mb-5">寄宿、到府保姆</p>
+            </div>
+          </a>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" class="card-link w-50 text-center py-3">聯繫</a>
+            <a href="#" class="card-link w-50 text-center text-secondary py-3">預約</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <nav class="mt-5" aria-label="Page navigation">
+      <ul class="pagination justify-content-end">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>

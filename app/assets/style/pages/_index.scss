@@ -1,0 +1,44 @@
+.banner {
+  .container {
+    @include media-breakpoint-down(md) {
+      padding-bottom: 144px;
+    }
+    @include media-breakpoint-down(xs) {
+      padding-bottom: 0px;
+    }
+  }
+  &-img {
+    background: url(../images/index-1.png) no-repeat center center / cover;
+    width: 43%;
+    position: absolute;
+    height: 768px;
+    @include media-breakpoint-down(md) {
+      background-size: contain;
+      position: relative;
+      margin: 104px auto 24px;
+      height: 288px;
+      min-height: initial;
+    }
+
+    @include media-breakpoint-down(xs) {
+      background-size: cover;
+      width: 100%;
+      margin: 0 0 12px 0;
+      height: 352px;
+      min-height: calc(100vh - 64px);
+    }
+  }
+  &-txt {
+    @include media-breakpoint-down(md) {
+      min-height: initial !important;
+    }
+  }
+}
+
+.section-swiper {
+  .swiper-container {
+    margin: 0 auto;
+    width: 85%;
+    overflow-x: hidden;
+  }
+}

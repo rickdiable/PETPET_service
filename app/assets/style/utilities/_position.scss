@@ -1,0 +1,35 @@
+.sticky-top-lg {
+  @include media-breakpoint-up(lg) {
+    @supports (position: sticky) {
+      position: sticky;
+      top: 80px;
+      z-index: 1000;
+    }
+  }
+}
+
+.position-lg-absolute {
+  @include media-breakpoint-up(lg) {
+    position: absolute;
+  }
+}
+
+.right-lg-0 {
+  @include media-breakpoint-up(lg) {
+    right: 0;
+  }
+}
+.bottom-lg-0 {
+  @include media-breakpoint-up(lg) {
+    bottom: 0px;
+  }
+}
+
+.custom-form-mb {
+  @media (max-width: 610px) {
+    margin-bottom: 8px;
+  }
+  @media (min-width: 611px) {
+    margin-bottom: 0px;
+  }
+}

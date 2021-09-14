@@ -1,0 +1,66 @@
+---
+title: PETPET | 領養毛孩
+layout: ./app/layout.ejs
+engine: ejs
+current: adopt
+footer: footer
+---
+
+<header>
+  <div class="container mb-3 mb-md-11">
+    <div class="row flex-row-reverse py-0 py-md-11">
+      <div class="col-md-7 col-lg-8 px-0 px-md-4 mb-3 mb-md-0" data-aos="fade-right">
+        <img src="./assets/images/index-4.jpeg" alt="homestay">
+      </div>
+
+      <div class="col-md-5 col-lg-4 d-flex flex-column justify-content-center" data-aos="fade-left">
+        <h2 class="font-xl font-md-4xl text-center text-md-left mb-1 mb-md-2 mb-lg-4">領養毛孩</h2>
+        <h3 class="font-m font-md-l text-center text-md-left">找尋最適合您的毛孩夥伴</h3>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container-fluid bg-warning py-4 mb-11 mb-lg-13">
+    <form class="form-row align-items-center" action="#">
+      <div class="col-3 mb-2">
+        <select class="custom-select">
+          <option value="動物類別" selected>- 動物類別 -</option>
+          <option value="犬">犬</option>
+          <option value="貓">貓</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+
+      <div class="col-3 mb-2">
+        <select class="custom-select">
+          <option value="動物品種" selected>- 動物品種 -</option>
+          <option value="混種犬">混種犬</option>
+          <option value="博美">博美</option>
+          <option value="柴犬">柴犬</option>
+          <option value="哈士奇">哈士奇</option>
+        </select>
+      </div>
+
+      <div class="col-6 col-md-5 offset-md-1 mb-2">
+        <select class="custom-select">
+          <option value="收容所" selected>- 收容所 -</option>
+          <option value="新北市政府動物保護防疫處">新北市政府動物保護防疫處</option>
+          <option value="新北市新店區公立動物之家">新北市新店區公立動物之家</option>
+          <option value="新北市板橋區公立動物之家">新北市板橋區公立動物之家</option>
+          <option value="新北市中和區公立動物之家">新北市中和區公立動物之家</option>
+        </select>
+      </div>
+
+      <div class="col-5">
+        <input id="animal_subid" class="form-control mt-0" type="text" placeholder="請輸入收容編號" />
+      </div>
+
+      <div class="col-5 offset-2 text-right">
+        <a href="#" class="btn btn-secondary col-5 col-lg-4 white-space-nowrap mr-md-2">取消</a>
+        <a href="#" class="btn btn-secondary col-5 col-lg-4 white-space-nowrap">查詢</a>
+      </div>
+
+    </form>
+  </div>
+</header>
