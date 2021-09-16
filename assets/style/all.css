@@ -8361,8 +8361,8 @@ button.bg-gray-100:focus {
 }
 
 .shadow {
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  -webkit-box-shadow: 0px 4px 8px #00000029 !important;
+          box-shadow: 0px 4px 8px #00000029 !important;
 }
 
 .shadow-lg {
@@ -14267,7 +14267,7 @@ ol {
 }
 
 .custom-adopt-card-img-top {
-  height: 172px;
+  height: 228px;
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
 }
