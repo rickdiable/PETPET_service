@@ -1,5 +1,28 @@
 "use strict";
 
+var BASE_URL = "https://data.coa.gov.tw";
+var INDEX_URL = BASE_URL + "/api/v1/AnimalRecognition/"; // const POSTER_URL = `${INDEX_URL}?animal_id=${i.animal_id}`;
+
+var data = [];
+var filteredData = []; // const dataPanel = document.querySelector("#data-panel");
+// const searchForm = document.querySelector("#search-form");
+// const searchInput = document.querySelector("#search-input");
+// const displayMode = document.querySelector(".display-mode-container");
+// const cardMode = document.querySelector("#card-mode");
+// const listMode = document.querySelector("#list-mode");
+// const paginator = document.querySelector("#paginator");
+
+var MOVIES_PER_PAGE = 36; //希望一頁有幾個電影卡片
+
+var MODE = "card"; //預設模式為卡片模式
+
+var NOW_PAGE = 1; //存放當前頁面
+
+var deleteFavorite = document.querySelector('.btn-remove-favorite');
+var navItem = document.querySelectorAll(".nav-item");
+var navBar = document.querySelector(".navbar-nav");
+"use strict";
+
 AOS.init({
   // Global settings:
   disable: false,

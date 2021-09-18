@@ -14418,6 +14418,16 @@ ol {
   }
 }
 
+.modal-adopt-img-height {
+  height: 300px;
+}
+
+@media (min-width: 768px) {
+  .modal-adopt-img-height {
+    height: 60vw;
+  }
+}
+
 .navbar-logo {
   background: url("../../assets/images/logo.svg") no-repeat;
   width: 122px;

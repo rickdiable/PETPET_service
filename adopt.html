@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.0/css/hover-min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="./assets/style/all.css">
 </head>
 
@@ -81,11 +82,11 @@
 
       <div class="col-7 col-md-3 col-lg-2 mb-2 mb-lg-0">
         <select class="custom-select">
-          <option value="動物品種" selected>- 動物品種 -</option>
-          <option value="混種犬">混種犬</option>
-          <option value="博美">博美</option>
-          <option value="柴犬">柴犬</option>
-          <option value="哈士奇">哈士奇</option>
+          <option value="動物品種" selected>- 動物毛色 -</option>
+          <option value="三花">三花</option>
+          <option value="斑點">斑點</option>
+          <option value="橘">橘</option>
+          <option value="白">白</option>
         </select>
       </div>
 
@@ -113,14 +114,28 @@
 </header>
 
 <div class="container mb-11 mb-lg-13">
+
+  <div class="d-flex justify-content-between font-m font-weight-md-bold mb-7 mb-md-11">
+    <p id="totalNum">當前檢索共有 5777 筆資料</p>
+    <div class="d-flex">
+      <a href="#" class="mr-5">
+        <i class="fa fa-th fa-lg" id="card-mode" aria-hidden="true"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-bars fa-lg" id="list-mode" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+
   <ul class="row card-group mb--3 mb-md--5 mb-lg--8">
     <li class="card-group-item col-6 col-md-4 col-lg-3 mb-10 hvr-bob">
-      <h4 class="text-center bg-warning shadow">asj12312sada</h4>
+
       <div class="card shadow bg-gray-100">
+        <h4 class="text-center bg-warning">流水編號 animal_subid</h4>
         <div class="custom-adopt-card-img-top"
           style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/4879a956-202a-4129-9a71-b62c81637e82_org.jpg') no-repeat 50% 50% / contain;">
         </div>
-        <ul class="card-body pt-5 px-3 px-lg-4">
+        <ul class="card-body py-3 px-3 px-lg-4">
           <li class="mb-1">
             <span class="font-weight-bold">品種: </span>混種犬
           </li>
@@ -139,7 +154,8 @@
           </li>
         </ul>
         <div class="bg-white d-flex mt-auto">
-          <a href="#" class="d-flex justify-content-center align-items-center card-link w-50 py-3">
+          <a href="#" data-toggle="modal" data-target="#adopt-modal"
+            class="d-flex justify-content-center align-items-center card-link w-50 py-3">
             <p>詳細資料</p>
           </a>
           <a href="#" class="card-link w-50 text-center text-secondary py-3">
@@ -149,8 +165,8 @@
       </div>
     </li>
     <li class="card-group-item col-6 col-md-4 col-lg-3 mb-10 hvr-bob">
-      <h4 class="text-center bg-warning shadow">asj12312sada</h4>
       <div class="card shadow bg-gray-100">
+        <h4 class="text-center bg-warning">asj12312sada</h4>
         <div class="custom-adopt-card-img-top"
           style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/c86b910c-08f3-46dd-9d83-efc90e303322_org.jpg') no-repeat 50% 50% / contain;">
         </div>
@@ -173,7 +189,8 @@
           </li>
         </ul>
         <div class="bg-white d-flex mt-auto">
-          <a href="#" class="d-flex justify-content-center align-items-center card-link w-50 py-3">
+          <a href="#" data-toggle="modal" data-target="#adopt-modal2"
+            class="d-flex justify-content-center align-items-center card-link w-50 py-3">
             <p>詳細資料</p>
           </a>
           <a href="#" class="card-link w-50 text-center text-secondary py-3">
@@ -182,9 +199,9 @@
         </div>
       </div>
     </li>
-    <li class="card-group-item col-6 col-md-4 col-lg-3 mb-10 hvr-bob">
-      <h4 class="text-center bg-warning shadow">asj12312sada</h4>
+    <!-- <li class="card-group-item col-6 col-md-4 col-lg-3 mb-10 hvr-bob">
       <div class="card shadow bg-gray-100">
+        <h4 class="text-center bg-warning">asj12312sada</h4>
         <div class="custom-adopt-card-img-top"
           style="background: url('https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg') no-repeat 50% 50% / contain;">
         </div>
@@ -217,9 +234,9 @@
       </div>
     </li>
     <li class="card-group-item col-6 col-md-4 col-lg-3 mb-10 hvr-bob">
-      <h4 class="text-center bg-warning shadow">asj12312sada</h4>
       <div class="card shadow bg-gray-100">
-        <div class="custom-adopt-card-img-top"
+        <h4 class="text-center bg-warning">asj12312sada</h4>
+        <div class="custom-adopt-card-img-top bg-white"
           style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/4879a956-202a-4129-9a71-b62c81637e82_org.jpg') no-repeat 50% 50% / contain;">
         </div>
         <ul class="card-body pt-5 px-3 px-lg-4">
@@ -251,9 +268,9 @@
       </div>
     </li>
     <li class="card-group-item col-6 col-md-4 col-lg-3 mb-10 hvr-bob">
-      <h4 class="text-center bg-warning shadow">asj12312sada</h4>
       <div class="card shadow bg-gray-100">
-        <div class="custom-adopt-card-img-top"
+        <h4 class="text-center bg-warning">asj12312sada</h4>
+        <div class="custom-adopt-card-img-top bg-white"
           style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/c86b910c-08f3-46dd-9d83-efc90e303322_org.jpg') no-repeat 50% 50% / contain;">
         </div>
         <ul class="card-body pt-5 px-3 px-lg-4">
@@ -267,11 +284,11 @@
             <span class="font-weight-bold">性別: </span>母
           </li>
           <li class="mb-1">
-            <span class="font-weight-bold">來源: </span>大同鄉
+            <span class="font-weight-bold">來源: </span>111大同鄉
           </li>
           <li class="mb-1">
-            <span class="font-weight-bold">我在: </span>
-            <p class="d-block">新北市八里區公立動物之家</p>
+            <p class="font-weight-bold">我在: </p>新北市八里區公立動物之家
+
           </li>
         </ul>
         <div class="bg-white d-flex mt-auto">
@@ -283,7 +300,7 @@
           </a>
         </div>
       </div>
-    </li>
+    </li> -->
   </ul>
 
   <nav class="mt-8" aria-label="Page navigation">
@@ -304,6 +321,75 @@
     </ul>
   </nav>
 
+</div>
+
+
+<!-- modal -->
+
+<div class="modal fade" id="adopt-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg container">
+    <div class="modal-content px-6 px-md-9 px-lg-8 py-6">
+      <div class="modal-body" id="adopt-modal-body">
+        <h5 class="modal-title font-l mb-5" id="adopt-modal-title">認養動物資料</h5>
+        <div class="row">
+
+          <!-- <div class="col-6 modal-adopt-img-height" id="adopt-modal-img">
+            <img src="https://asms.coa.gov.tw/AmlApp/Upload/Pic/c86b910c-08f3-46dd-9d83-efc90e303322_org.jpg"
+              alt="movie-poster" class="img-fluid">
+          </div> -->
+          <!-- <div class="col-6 modal-adopt-img-height" id="adopt-modal-img"
+            style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/c86b910c-08f3-46dd-9d83-efc90e303322_org.jpg') no-repeat 50% 50% / contain;">
+          </div> -->
+          <div class="col-12 col-md-6 mb-3 mb-md-0  modal-adopt-img-height" id="adopt-modal-img"
+            style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/4879a956-202a-4129-9a71-b62c81637e82_org.jpg') no-repeat 50% 50% / contain;">
+          </div>
+
+          <div class="col-12 col-md-5 ml-3 d-flex flex-column justify-content-center font-s font-md-base">
+            <p class="m-1"><em id="adopt-modal-date">2021-09-17</em></p>
+            <p class="m-1" id="adopt-modal-description">本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約</p>
+            <p class="m-1">本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約</p>
+            <p class="m-1">本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約</p>
+            <p class="m-1">本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約</p>
+            <p class="m-1">本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="adopt-modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg container">
+    <div class="modal-content px-6 px-md-9 px-lg-8 py-6">
+      <div class="modal-body" id="adopt-modal-body">
+        <h5 class="modal-title font-l mb-5" id="adopt-modal-title">認養動物資料</h5>
+        <div class="row">
+
+          <!-- <div class="col-6 modal-adopt-img-height" id="adopt-modal-img">
+            <img src="https://asms.coa.gov.tw/AmlApp/Upload/Pic/c86b910c-08f3-46dd-9d83-efc90e303322_org.jpg"
+              alt="movie-poster" class="img-fluid">
+          </div> -->
+          <!-- <div class="col-6 modal-adopt-img-height" id="adopt-modal-img"
+            style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/c86b910c-08f3-46dd-9d83-efc90e303322_org.jpg') no-repeat 50% 50% / contain;">
+          </div> -->
+          <div class="col-12 col-md-6 mb-3 mb-md-0 modal-adopt-img-height" id="adopt-modal-img"
+            style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/c86b910c-08f3-46dd-9d83-efc90e303322_org.jpg') no-repeat 50% 50% / contain;">
+          </div>
+
+          <div class="col-12 col-md-5 ml-3 d-flex flex-column justify-content-center font-s font-md-base">
+            <p class="m-1"><em id="adopt-modal-date">2021-09-17</em></p>
+            <p class="m-1" id="adopt-modal-description">本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約</p>
+            <p class="m-1">本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約</p>
+            <p class="m-1">本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約</p>
+            <p class="m-1">本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約</p>
+            <p class="m-1">本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
       
         <section class="bg-warning py-8 mb-2 mb-md-11">
