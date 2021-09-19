@@ -14422,9 +14422,20 @@ ol {
   height: 300px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .modal-adopt-img-height {
-    height: 60vw;
+    height: 60vh;
+  }
+}
+
+.modal-adopt-img-container {
+  padding: 8px 8px;
+  height: 320px;
+}
+
+@media (min-width: 576px) {
+  .modal-adopt-img-container {
+    height: 60vh;
   }
 }
 
