@@ -280,6 +280,7 @@ fetch(INDEX_URL).then(function (res) {
     if (i.album_file === "") {
       i.album_file = "./assets/images/noimg.png";
     }
-  }); // renderAnimalList(data);
+  });
+  renderAnimalList(data);
 });
 //# sourceMappingURL=all.js.map
