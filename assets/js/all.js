@@ -146,6 +146,8 @@ var listMode = document.querySelector("#list-mode");
 var table = document.querySelector(".table");
 var displayCard = document.querySelector("#displayCard");
 var displaylList = document.querySelector("#displaylList");
+var displaylListSmall = document.querySelector("#displayListSmall");
+var modalApi = document.querySelector(".modal-api");
 var dataPanel = document.querySelector("#dataPanel"); // const paginator = document.querySelector("#paginator");
 // Status
 
@@ -192,7 +194,8 @@ function renderShelterName() {
 
 
 function renderAnimalList(data) {
-  var rawHTML = ""; //如果MODE為'card'就渲染卡片模式
+  var rawHTML = "";
+  var rawHTML1 = ""; //如果MODE為'card'就渲染卡片模式
 
   if (MODE === "card") {
     //讓使用者知道當前顯示模式
@@ -209,6 +212,10 @@ function renderAnimalList(data) {
     cardMode.classList.remove("text-warning");
     listMode.classList.add("text-warning");
     data.forEach(function (i) {
+      rawHTML1 += "<div class=\"row d-flex justify-content-center align-items-center border-top py-2\">\n      <div class=\"col-3 table-adopt-img\"\n        style=\"background: url(".concat(i.album_file, ") no-repeat 50% 50% / contain;\">\n      </div>\n      <ul class=\"col-6\">\n        <li>\n          <span class=\"font-weight-bold\">\u985E\u5225: </span>").concat(i.animal_kind, "\n        </li>\n        <li>\n          <span class=\"font-weight-bold\">\u6BDB\u8272: </span>").concat(i.animal_colour, "\n        </li>\n        <li>\n          <span class=\"font-weight-bold\">\u6027\u5225: </span>").concat(i.animal_sex, "\n        </li>\n        <li>\n          <span class=\"font-weight-bold\">\u6211\u5728: </span>\n          <p>").concat(i.shelter_name, "</p>\n        </li>\n      </ul>\n      <div class=\"col-3\">\n        <div class=\"bg-white d-flex align-items-center row\">\n          <a href=\"#\" data-toggle=\"modal\" data-target=\"#adopt-modal\" data-id=").concat(i.animal_id, " class=\"col-12 btn btn-warning mb-1\">\u770B\u8A73\u7D30</a>\n          <a href=\"#\" class=\"btn btn-block btn-secondary col-12\">\u6B32\u8A8D\u990A</a>\n        </div>\n      </div>\n    </div>");
+    });
+    displayListSmall.innerHTML = rawHTML1;
+    data.forEach(function (i) {
       rawHTML += "<tr>\n      <th scope=\"row d-flex flex-column justify-content-center\">\n        <div class=\"table-adopt-img\"\n          style=\"background: url(".concat(i.album_file, ") no-repeat 50% 50% / contain;\">\n        </div>\n      </th>\n      <td class=\"align-middle\">").concat(i.animal_kind, "</td>\n      <td class=\"align-middle\">").concat(i.animal_colour, "</td>\n      <td class=\"align-middle\">").concat(i.animal_sex, "</td>\n      <td class=\"align-middle\">").concat(i.shelter_name, "</td>\n      <td class=\"align-middle\">\n        <div class=\"bg-white d-flex align-items-center\">\n          <a href=\"#\" data-toggle=\"modal\" data-target=\"#adopt-modal\" data-id=").concat(i.animal_id, " class=\"btn-detail-modal btn btn-warning w-50 mr-2 \">\n            \u8A73\u7D30\u8CC7\u6599\n          </a>\n          <a href=\"#\" class=\"btn btn-block btn-secondary w-50\">\u6211\u6709\u610F\u9858\u8A8D\u990A</a>\n        </div>\n      </td>\n    </tr>");
     });
     displayList.innerHTML = rawHTML;
@@ -220,8 +227,45 @@ function renderDetailModal(id) {
   fetch(MODAL_URL + id).then(function (res) {
     return res.json();
   }).then(function (getData) {
-    console.log(getData.Data[0].animal_foundplace);
+    console.log(getData.Data);
     console.log(MODAL_URL + id);
+    var modalData = getData.Data; // 將資料做中文處理
+
+    if (modalData[0].album_file === "") {
+      modalData[0].album_file = "./assets/images/noimg.png";
+    }
+
+    if (modalData[0].animal_sterilization === "T") {
+      modalData[0].animal_sterilization = "已絕育";
+    } else if (modalData[0].animal_sterilization === "F") {
+      modalData[0].animal_sterilization = "尚未絕育";
+    }
+
+    switch (modalData[0].animal_bodytype) {
+      case "BIG":
+        modalData[0].animal_bodytype = "大型";
+        break;
+
+      case "MEDIUM":
+        modalData[0].animal_bodytype = "中型";
+        break;
+
+      case "SMALL":
+        modalData[0].animal_bodytype = "小型";
+        break;
+    }
+
+    if (modalData[0].animal_sex === "F") {
+      modalData[0].animal_sex = "母";
+    } else if (modalData[0].animal_sex === "M") {
+      modalData[0].animal_sex = "公";
+    }
+
+    var str = "";
+    modalData.forEach(function (i) {
+      str += "<div\n      class=\"d-flex flex-column justify-content-center bg-gray-100 col-12 col-md-6 mb-3 mb-md-0 shadow modal-adopt-img-container\">\n      <div class=\"modal-adopt-img-height\" id=\"adopt-modal-img\"\n        style=\"background: url(".concat(i.album_file, ") no-repeat 50% 50% / contain;\">\n      </div>\n    </div>\n    <div class=\"col-12 col-md-5 ml-3 d-flex flex-column justify-content-center font-s font-md-base\">\n      <ul>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u5165\u6240\u5929\u6578 : </span>").concat(calcInShelterDays(i.animal_createtime), " \u5929\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u5165\u6240\u65E5\u671F : </span><em>").concat(i.animal_createtime, "</em>\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u5C0B\u7372\u5730 : </span>").concat(i.animal_foundplace, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\"></span>\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u6D41\u6C34\u7DE8\u865F : </span>").concat(i.animal_id, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u6536\u5BB9\u7DE8\u865F : </span>").concat(i.animal_subid, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u52D5\u7269\u54C1\u7A2E : </span>").concat(i.animal_kind, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u6027\u5225 : </span>").concat(i.animal_sex, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u6BDB\u8272 : </span>").concat(i.animal_colour, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u9AD4\u578B : </span>").concat(i.animal_bodytype, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u662F\u5426\u7D55\u80B2 : </span>").concat(i.animal_sterilization, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\"></span>\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u6240\u5728\u6536\u5BB9\u6240 : </span>").concat(i.shelter_name, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u6536\u5BB9\u6240\u96FB\u8A71 : </span>").concat(i.shelter_tel, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1\">\u6536\u5BB9\u6240\u5730\u5740 : </span>").concat(i.shelter_address, "\n        </li>\n        <li class=\"mb-1\">\n          <span class=\"font-weight-bold mr-1 \">\u5099\u8A3B : </span>").concat(i.animal_remark, "\n        </li>\n      </ul>\n    </div>");
+    });
+    modalApi.innerHTML = str;
   });
 } // 當點擊到"詳細資料"按鈕 彈出對應動物 id 的 MODAL
 
@@ -230,17 +274,18 @@ dataPanel.addEventListener('click', function (e) {
   e.preventDefault();
 
   if (e.target.matches('.btn-detail-modal')) {
-    renderDetailModal(187345);
+    renderDetailModal(e.target.dataset.id);
   }
 }); // 計算入所天數
 
 function calcInShelterDays(moveInShelterDay) {
-  var todayDate = new Date(); // let today = `${todayDate.getFullYear()}/${(todayDate.getMonth()+1)}/${todayDate.getDate()}`;
-
-  var openDate = new Date(moveInShelterDay);
+  var todayDate = new Date();
+  var str = moveInShelterDay.replace("-", "/");
+  var openDate = new Date(str);
+  console.log(todayDate, openDate);
   var days = parseInt(Math.abs(todayDate - openDate) / 1000 / 60 / 60 / 24);
-  console.log(days);
-} // calcInShelterDays("2021/09/17");
+  return days;
+} // calcInShelterDays("2021/09/24");
 // 圖卡及清單模式切換
 
 
@@ -272,8 +317,6 @@ fetch(INDEX_URL).then(function (res) {
       i.animal_sex = "母";
     } else if (i.animal_sex === "M") {
       i.animal_sex = "公";
-    } else {
-      i.animal_sex = "";
     } // 若圖片網址為空值以 noimg 圖片代替
 
 

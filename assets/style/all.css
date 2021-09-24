@@ -14435,7 +14435,7 @@ ol {
 
 @media (min-width: 576px) {
   .modal-adopt-img-container {
-    height: 40vh;
+    height: 50vh;
   }
 }
 
@@ -14558,7 +14558,7 @@ ol {
 }
 
 @media (max-width: 767.98px) {
-  .table-adopt-md-d-none {
+  .table-adopt-sm-d-none {
     display: none;
   }
 }
