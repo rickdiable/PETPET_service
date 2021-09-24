@@ -14550,6 +14550,13 @@ ol {
   transition: 0.5s;
 }
 
+.table-adopt-img {
+  width: 120px;
+  height: 120px;
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}
+
 .timeline {
   position: relative;
   display: -webkit-box;
