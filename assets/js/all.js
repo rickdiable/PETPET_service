@@ -151,9 +151,9 @@ var modalApi = document.querySelector(".modal-api");
 var dataPanel = document.querySelector("#dataPanel"); // const paginator = document.querySelector("#paginator");
 // Status
 
-var MOVIES_PER_PAGE = 36; //希望一頁有幾個電影卡片
+var MOVIES_PER_PAGE = 36; //希望一頁有幾張卡片
 
-var MODE = "list"; //預設模式為卡片模式
+var MODE = "CARD"; //預設模式為卡片模式
 
 var NOW_PAGE = 1; //存放當前頁面
 // 監聽
