@@ -37,8 +37,7 @@ AOS.init({
 
 $(document).on("click", ".link-arrow", function (e) {
   e.preventDefault();
-  var target = $(this).attr("href"); // console.log(target);
-
+  var target = $(this).attr("href");
   $('html,body').animate({
     scrollTop: $(target).offset().top
   }, 500);
