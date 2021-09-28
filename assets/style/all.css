@@ -14619,6 +14619,16 @@ ol {
   width: 30px;
 }
 
+@media (max-width: 575.98px) {
+  #paginator {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  #paginator .page-item {
+    margin-bottom: 4px;
+  }
+}
+
 @media (min-width: 992px) {
   @supports ((position: -webkit-sticky) or (position: sticky)) {
     .sticky-top-lg {
