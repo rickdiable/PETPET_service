@@ -158,8 +158,7 @@ var MODE = "card"; //預設模式為卡片模式
 var NOW_PAGE = 1; //存放當前頁面
 
 var paginatorLength = 11; // 想顯示幾個頁碼
-
-var clickCount = 1; // 監聽
+// 監聽
 
 animalKind.addEventListener('change', changeColourOption); // 篩選 點選動物種類時顯示該動物類別的毛色供查詢
 
@@ -417,11 +416,12 @@ function getDataByPage(page) {
 
 watchMore.addEventListener('click', function getDataByClick(e) {
   e.preventDefault();
-  clickCount += 1;
+  NOW_PAGE += 1;
   var clickData = filteredData.length ? filteredData : data;
-  var moreData = clickData.slice(0, clickCount * CARDS_PER_PAGE);
+  var moreData = clickData.slice(0, NOW_PAGE * CARDS_PER_PAGE);
   console.log(moreData);
   renderAnimalList(moreData);
+  renderPaginator(data.length);
 }); // 監聽 paginator，判斷使用者點擊第幾頁，並渲染該頁頁面
 
 paginator.addEventListener("click", function (e) {
@@ -441,7 +441,6 @@ paginator.addEventListener("click", function (e) {
 
 displayMode.addEventListener('click', function displayModeSwitch(e) {
   e.preventDefault();
-  clickCount = 1;
   console.log(data);
 
   if (e.target.matches("#card-mode")) {
