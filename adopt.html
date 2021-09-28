@@ -207,7 +207,7 @@
     <!-- 圖卡式介面 -->
 
     <!-- 清單式界面 -->
-    <div class="container pt-3 d-md-none" id="displayListSmall">
+    <div class="container pt-3 d-md-none d-none" id="displayListSmall">
 
       <!-- <div class="row d-flex justify-content-center align-items-center border-top py-2">
         <div class="col-3 table-adopt-img"
@@ -314,9 +314,9 @@
     </ul>
   </nav> -->
 
-  <nav class="mt-8" aria-label="Page navigation">
+  <nav class="mt-8 d-none d-md-block" aria-label="Page navigation">
     <div class="pagination justify-content-center">
-      <div class="d-none d-md-block page-item">
+      <div class="page-item">
         <a class="page-link page-previous" href="#filterForm" aria-label="Previous">
           <span class="page-previous" aria-hidden="true">&laquo;</span>
         </a>
@@ -326,11 +326,17 @@
         <div class="page-item"><a class="page-link" href="#">2</a></div>
         <div class="page-item"><a class="page-link" href="#">3</a></div>
       </div>
-      <div class="d-none d-md-block page-item">
+      <div class="page-item">
         <a class="page-link page-next" href="#filterForm" aria-label="Next">
           <span class="page-next" aria-hidden="true">&raquo;</span>
         </a>
       </div>
+    </div>
+  </nav>
+
+  <nav class="d-block d-md-none mt-4">
+    <div class="bg-white d-flex justify-content-end align-items-center">
+      <a href="#" class="btn-detail-modal btn btn-warning btn-watch-more">點我看更多</a>
     </div>
   </nav>
 

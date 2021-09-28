@@ -147,6 +147,7 @@ var displaylListSmall = document.querySelector("#displayListSmall");
 var modalApi = document.querySelector(".modal-api");
 var dataPanel = document.querySelector("#dataPanel");
 var paginator = document.querySelector("#paginator");
+var watchMore = document.querySelector(".btn-watch-more");
 var pagination = document.querySelector(".pagination");
 var totalNum = document.querySelector("#totalNum"); // Status
 
@@ -157,7 +158,8 @@ var MODE = "card"; //預設模式為卡片模式
 var NOW_PAGE = 1; //存放當前頁面
 
 var paginatorLength = 11; // 想顯示幾個頁碼
-// 監聽
+
+var clickCount = 1; // 監聽
 
 animalKind.addEventListener('change', changeColourOption); // 篩選 點選動物種類時顯示該動物類別的毛色供查詢
 
@@ -201,6 +203,7 @@ function renderAnimalList(data) {
   if (MODE === "card") {
     //讓使用者知道當前顯示模式
     table.classList.add("d-none");
+    displaylListSmall.classList.add("d-none");
     cardMode.classList.add("text-warning");
     listMode.classList.remove("text-warning");
     data.forEach(function (i) {
@@ -210,6 +213,7 @@ function renderAnimalList(data) {
   } else if (MODE === "list") {
     displayCard.innerHTML = "";
     table.classList.remove("d-none");
+    displaylListSmall.classList.remove("d-none");
     cardMode.classList.remove("text-warning");
     listMode.classList.add("text-warning");
     data.forEach(function (i) {
@@ -390,33 +394,35 @@ pagination.addEventListener('click', function (e) {
       scrollTop: $(target).offset().top
     }, 0);
   }
-});
-
-function isMobile() {
-  try {
-    document.createEvent("TouchEvent");
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-if (isMobile()) {
-  paginatorLength = 9;
-} else {
-  paginatorLength = 11;
-} // 回傳當前分頁的資料陣列
-
+}); // function isMobile() {
+//   try{ document.createEvent("TouchEvent"); return true; }
+//   catch(e){ return false;}
+// }
+// if(isMobile()){
+//   paginatorLength = 9;
+// }else{
+//   paginatorLength = 11;
+// }
+// 回傳當前分頁的資料陣列
 
 function getDataByPage(page) {
-  var paginationData = filteredData.length ? filteredData : data; // page 1 => 1~36 data[0]~data[35]    data.slice(0,35)
-  // page 2 => 37~72 data[36]~data[71]  data.slice(36,71)
-  // page 3 => 73~108 data[72]~data[107]  data.slice(72,107)
+  var paginationData = filteredData.length ? filteredData : data; // page 1 => 1~12 data[0]~data[11]    data.slice(0,12)
+  // page 2 => 13~24 data[12]~data[23]  data.slice(12,24)
+  // page 3 => 25~36 data[24]~data[35]  data.slice(24,36)
 
   var startIndex = (page - 1) * CARDS_PER_PAGE;
   return paginationData.slice(startIndex, startIndex + CARDS_PER_PAGE);
-} // 監聽 paginator，判斷使用者點擊第幾頁，並渲染該頁頁面
+} // 當在小螢幕斷點點擊看更多時，渲染下一批資料
 
+
+watchMore.addEventListener('click', function getDataByClick(e) {
+  e.preventDefault();
+  clickCount += 1;
+  var clickData = filteredData.length ? filteredData : data;
+  var moreData = clickData.slice(0, clickCount * CARDS_PER_PAGE);
+  console.log(moreData);
+  renderAnimalList(moreData);
+}); // 監聽 paginator，判斷使用者點擊第幾頁，並渲染該頁頁面
 
 paginator.addEventListener("click", function (e) {
   e.preventDefault();
@@ -435,6 +441,8 @@ paginator.addEventListener("click", function (e) {
 
 displayMode.addEventListener('click', function displayModeSwitch(e) {
   e.preventDefault();
+  clickCount = 1;
+  console.log(data);
 
   if (e.target.matches("#card-mode")) {
     MODE = "card";

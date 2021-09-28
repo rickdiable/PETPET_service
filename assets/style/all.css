@@ -14552,7 +14552,7 @@ ol {
 
 #paginator .page-item {
   text-align: center;
-  width: 50px;
+  width: 40px;
 }
 
 #paginator .page-link {
@@ -14562,17 +14562,6 @@ ol {
 
 #paginator .page-ellipsis {
   width: 30px;
-}
-
-@media (max-width: 575.98px) {
-  #paginator {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  #paginator .page-item {
-    margin-bottom: 4px;
-    width: 42px;
-  }
 }
 
 .table-adopt-img {
