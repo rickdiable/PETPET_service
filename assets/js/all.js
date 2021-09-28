@@ -150,7 +150,8 @@ var displaylListSmall = document.querySelector("#displayListSmall");
 var modalApi = document.querySelector(".modal-api");
 var dataPanel = document.querySelector("#dataPanel");
 var paginator = document.querySelector("#paginator");
-var pagination = document.querySelector(".pagination"); // Status
+var pagination = document.querySelector(".pagination");
+var totalNum = document.querySelector("#totalNum"); // Status
 
 var CARDS_PER_PAGE = 12; //希望一頁有幾張卡片
 
@@ -392,7 +393,23 @@ pagination.addEventListener('click', function (e) {
       scrollTop: $(target).offset().top
     }, 0);
   }
-}); // 回傳當前分頁的資料陣列
+});
+
+function isMobile() {
+  try {
+    document.createEvent("TouchEvent");
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+if (isMobile()) {
+  totalNum.textContent = "現在是行動裝置";
+} else {
+  totalNum.textContent = "現在是一般裝置";
+} // 回傳當前分頁的資料陣列
+
 
 function getDataByPage(page) {
   var paginationData = filteredData.length ? filteredData : data; // page 1 => 1~36 data[0]~data[35]    data.slice(0,35)
