@@ -289,155 +289,74 @@ function calcInShelterDays(moveInShelterDay) {
   var days = parseInt(Math.abs(todayDate - openDate) / 1000 / 60 / 60 / 24);
   return days;
 } // calcInShelterDays("2021/09/24");
-// 偵測是否為行動裝置，改變 paginator 的型態
+// 渲染 pagination 頁碼
+// total 為總頁數，以 amount(傳入資料) / CARDS_PER_PAGE(每頁欲顯示數) 取得
 
 
-function isMobile() {
-  try {
-    document.createEvent("TouchEvent");
-    return true;
-  } catch (e) {
-    return false;
+function renderPaginator(amount) {
+  var pageArr = [];
+  var total = Math.ceil(amount / CARDS_PER_PAGE);
+  console.log("\u7576\u524D\u8F38\u5165\u7E3D\u9801\u6578\u70BA".concat(total, "\uFF0C\u7576\u524D\u9801\u9762\u70BA\u7B2C").concat(NOW_PAGE, "\u9801\uFF0C\u9801\u78BC\u986F\u793A").concat(paginatorLength, "\u9801")); // 總頁數小於顯示頁碼的情況下:全部顯示
+
+  if (total < paginatorLength) {
+    for (var i = 0; i < total; i++) {
+      pageArr.push(i + 1);
+    }
+  } else {
+    // 總頁數超過 paginatorLength 的情況:當前頁面偏向頁首、頁尾或中間
+    var max = paginatorLength - 3; // 扣掉省略號佔的一格及前或後方固定顯示的兩個頁碼
+    // 當前頁面偏向頁首時
+
+    if (NOW_PAGE <= max) {
+      // 前段顯示的頁碼
+      for (var _i = 0; _i < max; _i++) {
+        pageArr.push(_i + 1);
+      } // 補齊後面的頁碼
+
+
+      pageArr.push(max + 1, '...', total); // 當前頁面偏向頁尾時
+    } else if (NOW_PAGE > total - max) {
+      // 後段顯示的頁碼
+      for (var _i2 = 0; _i2 < max; _i2++) {
+        pageArr.unshift(total - _i2);
+      } // 補齊前面的頁碼
+
+
+      pageArr.unshift(1, '...', total - max); // 當前頁面在中間時
+    } else {
+      var around = (paginatorLength - 7) / 2; // 減去前後固定顯示的兩頁、省略號以及當前頁
+
+      var leftArr = []; // 當前頁左方的頁碼
+
+      var rightArr = []; // 當前頁右方的頁碼
+      // 湊足中間顯示的頁碼
+
+      for (var _i3 = 1; _i3 <= around; _i3++) {
+        leftArr.unshift(NOW_PAGE - _i3);
+        rightArr.push(NOW_PAGE + _i3);
+      } // 組合中段並補齊前後段
+
+
+      pageArr = leftArr.concat(NOW_PAGE, rightArr);
+      pageArr.push('...', total - 1, total);
+      pageArr.unshift(1, 2, '...');
+    }
   }
-}
 
-if (isMobile()) {
-  // 行動裝置
-  // 渲染 pagination 頁碼
-  // total 為總頁數，以 amount(傳入資料) / CARDS_PER_PAGE(每頁欲顯示數) 取得  
-  var _renderPaginator = function _renderPaginator(amount) {
-    var pageArr = [];
-    paginatorLength = 1;
-    var total = Math.ceil(amount / CARDS_PER_PAGE);
-    console.log("\u7576\u524D\u8F38\u5165\u7E3D\u9801\u6578\u70BA".concat(total, "\uFF0C\u7576\u524D\u9801\u9762\u70BA\u7B2C").concat(NOW_PAGE, "\u9801\uFF0C\u9801\u78BC\u986F\u793A").concat(paginatorLength, "\u9801")); // 總頁數小於顯示頁碼的情況下:全部顯示
-
-    if (total < paginatorLength) {
-      for (var i = 0; i < total; i++) {
-        pageArr.push(i + 1);
-      }
+  var str = "";
+  pageArr.forEach(function (i) {
+    if (i === "...") {
+      str += "<div class=\"page-item page-ellipsis\"><p>".concat(i, "</p></div>");
     } else {
-      // 總頁數超過 paginatorLength 的情況:當前頁面偏向頁首、頁尾或中間
-      var max = paginatorLength - 1; // 扣掉省略號佔的一格及前或後方固定顯示的兩個頁碼
-      // 當前頁面偏向頁首時
-
-      if (NOW_PAGE <= max) {
-        // 前段顯示的頁碼
-        for (var _i = 0; _i < max; _i++) {
-          pageArr.push(_i + 1);
-        } // 補齊後面的頁碼
-
-
-        pageArr.push(max + 1, '...', total); // 當前頁面偏向頁尾時
-      } else if (NOW_PAGE > total - max) {
-        // 後段顯示的頁碼
-        for (var _i2 = 0; _i2 < max; _i2++) {
-          pageArr.unshift(total - _i2);
-        } // 補齊前面的頁碼
-
-
-        pageArr.unshift(1, '...', total - max); // 當前頁面在中間時
-      } else {
-        var around = (paginatorLength - 7) / 2; // 減去前後固定顯示的兩頁、省略號以及當前頁
-
-        var leftArr = []; // 當前頁左方的頁碼
-
-        var rightArr = []; // 當前頁右方的頁碼
-        // 湊足中間顯示的頁碼
-
-        for (var _i3 = 1; _i3 <= around; _i3++) {
-          leftArr.unshift(NOW_PAGE - _i3);
-          rightArr.push(NOW_PAGE + _i3);
-        } // 組合中段並補齊前後段
-
-
-        pageArr = leftArr.concat(NOW_PAGE, rightArr);
-        pageArr.push('...', total);
-        pageArr.unshift(1, '...');
-      }
+      str += "<div class=\"page-item\" data-page=".concat(i, "><a class=\"page-link\" href=\"#\" data-page=").concat(i, ">").concat(i, "</a></div>");
     }
-
-    var str = "";
-    pageArr.forEach(function (i) {
-      if (i === "...") {
-        str += "<div class=\"page-item page-ellipsis\"><p>".concat(i, "</p></div>");
-      } else {
-        str += "<div class=\"page-item\" data-page=".concat(i, "><a class=\"page-link\" href=\"#\" data-page=").concat(i, ">").concat(i, "</a></div>");
-      }
-    });
-    paginator.innerHTML = str;
-    paginator.childNodes.forEach(function (i) {
-      if (i.dataset.page == NOW_PAGE) {
-        i.classList.add('active');
-      }
-    });
-  };
-} else {
-  // 一般裝置
-  var _renderPaginator2 = function _renderPaginator2(amount) {
-    var pageArr = [];
-    var total = Math.ceil(amount / CARDS_PER_PAGE);
-    console.log("\u7576\u524D\u8F38\u5165\u7E3D\u9801\u6578\u70BA".concat(total, "\uFF0C\u7576\u524D\u9801\u9762\u70BA\u7B2C").concat(NOW_PAGE, "\u9801\uFF0C\u9801\u78BC\u986F\u793A").concat(paginatorLength, "\u9801")); // 總頁數小於顯示頁碼的情況下:全部顯示
-
-    if (total < paginatorLength) {
-      for (var i = 0; i < total; i++) {
-        pageArr.push(i + 1);
-      }
-    } else {
-      // 總頁數超過 paginatorLength 的情況:當前頁面偏向頁首、頁尾或中間
-      var max = paginatorLength - 3; // 扣掉省略號佔的一格及前或後方固定顯示的兩個頁碼
-      // 當前頁面偏向頁首時
-
-      if (NOW_PAGE <= max) {
-        // 前段顯示的頁碼
-        for (var _i4 = 0; _i4 < max; _i4++) {
-          pageArr.push(_i4 + 1);
-        } // 補齊後面的頁碼
-
-
-        pageArr.push(max + 1, '...', total); // 當前頁面偏向頁尾時
-      } else if (NOW_PAGE > total - max) {
-        // 後段顯示的頁碼
-        for (var _i5 = 0; _i5 < max; _i5++) {
-          pageArr.unshift(total - _i5);
-        } // 補齊前面的頁碼
-
-
-        pageArr.unshift(1, '...', total - max); // 當前頁面在中間時
-      } else {
-        var around = (paginatorLength - 7) / 2; // 減去前後固定顯示的兩頁、省略號以及當前頁
-
-        var leftArr = []; // 當前頁左方的頁碼
-
-        var rightArr = []; // 當前頁右方的頁碼
-        // 湊足中間顯示的頁碼
-
-        for (var _i6 = 1; _i6 <= around; _i6++) {
-          leftArr.unshift(NOW_PAGE - _i6);
-          rightArr.push(NOW_PAGE + _i6);
-        } // 組合中段並補齊前後段
-
-
-        pageArr = leftArr.concat(NOW_PAGE, rightArr);
-        pageArr.push('...', total - 1, total);
-        pageArr.unshift(1, 2, '...');
-      }
+  });
+  paginator.innerHTML = str;
+  paginator.childNodes.forEach(function (i) {
+    if (i.dataset.page == NOW_PAGE) {
+      i.classList.add('active');
     }
-
-    var str = "";
-    pageArr.forEach(function (i) {
-      if (i === "...") {
-        str += "<div class=\"page-item page-ellipsis\"><p>".concat(i, "</p></div>");
-      } else {
-        str += "<div class=\"page-item\" data-page=".concat(i, "><a class=\"page-link\" href=\"#\" data-page=").concat(i, ">").concat(i, "</a></div>");
-      }
-    });
-    paginator.innerHTML = str;
-    paginator.childNodes.forEach(function (i) {
-      if (i.dataset.page == NOW_PAGE) {
-        i.classList.add('active');
-      }
-    });
-  };
+  });
 } // 分頁器跳下頁、回上頁功能
 
 
@@ -471,7 +390,23 @@ pagination.addEventListener('click', function (e) {
       scrollTop: $(target).offset().top
     }, 0);
   }
-}); // 回傳當前分頁的資料陣列
+});
+
+function isMobile() {
+  try {
+    document.createEvent("TouchEvent");
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+if (isMobile()) {
+  paginatorLength = 9;
+} else {
+  paginatorLength = 11;
+} // 回傳當前分頁的資料陣列
+
 
 function getDataByPage(page) {
   var paginationData = filteredData.length ? filteredData : data; // page 1 => 1~36 data[0]~data[35]    data.slice(0,35)

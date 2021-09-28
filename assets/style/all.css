@@ -14615,6 +14615,10 @@ ol {
   border-radius: 0;
 }
 
+#paginator .page-ellipsis {
+  width: 30px;
+}
+
 @media (min-width: 992px) {
   @supports ((position: -webkit-sticky) or (position: sticky)) {
     .sticky-top-lg {
