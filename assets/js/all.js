@@ -149,7 +149,8 @@ var dataPanel = document.querySelector("#dataPanel");
 var paginator = document.querySelector("#paginator");
 var watchMore = document.querySelector(".btn-watch-more");
 var pagination = document.querySelector(".pagination");
-var totalNum = document.querySelector("#totalNum"); // Status
+var totalNum = document.querySelector("#totalNum");
+var arrowUp = document.querySelector(".arrow-up"); // Status
 
 var CARDS_PER_PAGE = 12; //希望一頁有幾張卡片
 
@@ -192,8 +193,13 @@ function renderShelterName() {
     str += "<option value=\"".concat(i, "\">").concat(i, "</option>");
   });
   shelterName.innerHTML = str;
-} // 渲染資料畫面至卡片或清單，需判斷狀態，並渲染該模式的型態
+} // 上滑箭頭捲動後顯示狀態切換
 
+
+window.addEventListener('scroll', function () {
+  var scrollTop = window.scrollY;
+  if (scrollTop > 1520) arrowUp.classList.remove('d-none');else arrowUp.classList.add('d-none');
+}); // 渲染資料畫面至卡片或清單，需判斷狀態，並渲染該模式的型態
 
 function renderAnimalList(data) {
   var rawHTML = "";
@@ -393,16 +399,7 @@ pagination.addEventListener('click', function (e) {
       scrollTop: $(target).offset().top
     }, 0);
   }
-}); // function isMobile() {
-//   try{ document.createEvent("TouchEvent"); return true; }
-//   catch(e){ return false;}
-// }
-// if(isMobile()){
-//   paginatorLength = 9;
-// }else{
-//   paginatorLength = 11;
-// }
-// 回傳當前分頁的資料陣列
+}); // 回傳當前分頁的資料陣列
 
 function getDataByPage(page) {
   var paginationData = filteredData.length ? filteredData : data; // page 1 => 1~12 data[0]~data[11]    data.slice(0,12)

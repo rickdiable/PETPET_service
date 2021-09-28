@@ -14393,6 +14393,18 @@ ol {
   color: #af3500;
 }
 
+.arrow-up {
+  right: 2vw;
+  bottom: 10vh;
+  z-index: 100;
+}
+
+.arrow-up-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
 .modal-img {
   width: 100px;
   height: 100px;
