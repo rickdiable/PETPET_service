@@ -14606,6 +14606,15 @@ ol {
   margin-top: 8px;
 }
 
+#paginator .page-item {
+  text-align: center;
+  width: 50px;
+}
+
+#paginator .page-link {
+  border-radius: 0;
+}
+
 @media (min-width: 992px) {
   @supports ((position: -webkit-sticky) or (position: sticky)) {
     .sticky-top-lg {

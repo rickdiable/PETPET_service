@@ -1,0 +1,10 @@
+#paginator .page-item {
+  text-align: center;
+  width: 50px;
+}
+
+#paginator .page-link {
+  border-radius: 0;
+}
+
+/*# sourceMappingURL=Pagination.css.map */
