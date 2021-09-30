@@ -129,10 +129,10 @@ var MODAL_URL = "".concat(INDEX_URL, "?animal_id="); // Data
 
 var data = [];
 var filteredData = [];
-var dogColour = ["咖啡色", "黑黃色", "黑棕色", "黑色", "黑白色", "棕黑色", "白色", "棕色", "黃色", "灰色", "虎斑色", "花色", "米色", "黑灰色", "黃白色", "棕白色", "黃虎斑色", "虎斑白色", "棕灰色", "黑虎斑色", "三花色", "灰白色", "花白色", "咖啡白色", "灰黑色", "咖啡棕色", "咖啡黑色"];
-var catColour = ["虎斑色", "三花色", "黑白色", "黑黃色", "黑色", "虎斑白色", "黃白色", "花色", "黃虎斑色", "黃色", "灰白色", "黑虎斑色", "黑棕色", "灰色", "白色", "灰黑色", "咖啡棕色", "米色", "棕灰色", "黑灰色", "咖啡黑色", "棕黑色", "咖啡色", "花白色", "棕色", "棕白色"];
-var otherColour = ["白色", "黑色", "花色"];
-var shelter = ["新北市板橋區公立動物之家", "屏東縣公立犬貓中途之家", "臺北市動物之家", "臺東縣動物收容中心", "彰化縣流浪狗中途之家", "桃園市動物保護教育園區", "澎湖縣流浪動物收容中心", "新北市中和區公立動物之家", "基隆市寵物銀行", "花蓮縣流浪犬中途之家", "苗栗縣生態保育教育中心(動物收容所)", "雲林縣流浪動物收容所", "宜蘭縣流浪動物中途之家", "高雄市燕巢動物保護關愛園區", "臺南市動物之家善化站", "新北市八里區公立動物之家", "臺南市動物之家灣裡站", "新竹縣公立動物收容所", "金門縣動物收容中心", "高雄市壽山動物保護教育園區", "新竹市動物保護教育園區", "南投縣公立動物收容所", "新北市五股區公立動物之家", "臺中市動物之家后里園區", "新北市新店區公立動物之家", "新北市淡水區公立動物之家", "新北市政府動物保護防疫處", "嘉義縣流浪犬中途之家", "新北市瑞芳區公立動物之家", "嘉義市動物保護教育園區", "臺中市動物之家南屯園區", "連江縣流浪犬收容中心", "新北市三芝區公立動物之家"];
+var dogColour = [];
+var catColour = [];
+var otherColour = [];
+var shelter = [];
 var modalHTML = "";
 var filters = {
   animal_kind: [],
@@ -253,8 +253,8 @@ function renderDetailModal(id) {
   fetch(MODAL_URL + id).then(function (res) {
     return res.json();
   }).then(function (getData) {
-    console.log(getData.Data);
-    console.log(MODAL_URL + id);
+    // console.log(getData.Data);
+    // console.log(MODAL_URL + id);
     var modalData = getData.Data; // 將資料做中文處理
 
     if (modalData[0].album_file === "") {
@@ -303,16 +303,15 @@ dataPanel.addEventListener('click', function (e) {
   if (e.target.matches('.btn-detail-modal')) {
     modalHTML = "";
     renderDetailModal(e.target.dataset.id);
-  } else {
-    console.log(e.target);
+  } else {// console.log(e.target);
   }
 }); // 計算入所天數
 
 function calcInShelterDays(moveInShelterDay) {
   var todayDate = new Date();
   var str = moveInShelterDay.replace("-", "/");
-  var openDate = new Date(str);
-  console.log(todayDate, openDate);
+  var openDate = new Date(str); // console.log(todayDate,openDate) 
+
   var days = parseInt(Math.abs(todayDate - openDate) / 1000 / 60 / 60 / 24);
   return days;
 } // calcInShelterDays("2021/09/24");
@@ -322,8 +321,8 @@ function calcInShelterDays(moveInShelterDay) {
 
 function renderPaginator(amount) {
   var pageArr = [];
-  var total = Math.ceil(amount / CARDS_PER_PAGE);
-  console.log("\u7576\u524D\u8F38\u5165\u7E3D\u9801\u6578\u70BA".concat(total, "\uFF0C\u7576\u524D\u9801\u9762\u70BA\u7B2C").concat(NOW_PAGE, "\u9801\uFF0C\u9801\u78BC\u986F\u793A").concat(paginatorLength, "\u9801")); // 總頁數小於顯示頁碼的情況下:全部顯示
+  var total = Math.ceil(amount / CARDS_PER_PAGE); // console.log(`當前輸入總頁數為${total}，當前頁面為第${NOW_PAGE}頁，頁碼顯示${paginatorLength}頁`)
+  // 總頁數小於顯示頁碼的情況下:全部顯示
 
   if (total < paginatorLength) {
     for (var i = 0; i < total; i++) {
@@ -389,7 +388,7 @@ function renderPaginator(amount) {
 
 pagination.addEventListener('click', function (e) {
   e.preventDefault();
-  var paginationData = filteredData.length ? filteredData : data; // 不是在第一或最後一頁點擊時時捲動到上方篩選列
+  var paginationData = filteredData.length ? filteredData : data;
 
   if (e.target.classList.contains('page-previous')) {
     if (NOW_PAGE === 1) {
@@ -441,8 +440,8 @@ watchMore.addEventListener('click', function getDataByClick(e) {
 paginator.addEventListener("click", function (e) {
   e.preventDefault();
   var paginationData = filteredData.length ? filteredData : data; // console.log(paginationData);
+  // console.log(e.target);
 
-  console.log(e.target);
   if (e.target.tagName !== "A") return;
   NOW_PAGE = Number(e.target.dataset.page);
   renderPaginator(paginationData.length);
@@ -480,7 +479,6 @@ searchForm.addEventListener('click', function (e) {
       alert('請設定搜尋條件');
       return;
     } else {
-      console.log(filters);
       output();
       NOW_PAGE = 1;
 
@@ -574,16 +572,13 @@ function multiFilter(array, filters) {
 
 function output() {
   filteredData = multiFilter(data, filters);
-  console.log(filteredData);
 } // 用 fetch 從 API 拿取資料並做部分資料處理
 
 
 fetch(INDEX_URL).then(function (res) {
   return res.json();
 }).then(function (getData) {
-  console.log(getData.Data[0]);
-  renderShelterName(); // 只渲染開放認養的動物資料
-
+  // 只渲染開放認養的動物資料
   data = getData.Data.filter(function (i) {
     return i.animal_status === "OPEN";
   });
@@ -604,8 +599,28 @@ fetch(INDEX_URL).then(function (res) {
 
 
     i.animal_id = String(i.animal_id);
+  }); // 取得載入資料當前的所有動物毛色及所有收容所資料
+
+  data.forEach(function (i) {
+    if (shelter.includes(i.shelter_name) || i.shelter_name === "") {} else {
+      shelter.push(i.shelter_name);
+    }
+
+    if (i.animal_kind == "狗" && i.animal_colour != "") {
+      if (dogColour.includes(i.animal_colour) || i.animal_colour === "") {} else {
+        dogColour.push(i.animal_colour);
+      }
+    } else if (i.animal_kind == "貓" && i.animal_colour != "") {
+      if (catColour.includes(i.animal_colour) || i.animal_colour === "") {} else {
+        catColour.push(i.animal_colour);
+      }
+    } else {
+      if (otherColour.includes(i.animal_colour) || i.animal_colour === "") {} else {
+        otherColour.push(i.animal_colour);
+      }
+    }
   });
-  console.log(data);
+  renderShelterName();
   renderPaginator(data.length);
   renderAnimalList(getDataByPage(NOW_PAGE));
   totalNum.textContent = "\u7576\u524D\u6AA2\u7D22\u5171\u6709 ".concat(data.length, " \u500B\u6BDB\u5B69");
