@@ -181,18 +181,19 @@ function changeColourOption() {
     dogColour.forEach(function (i) {
       colourOptions += "<option value=\"".concat(i, "\">").concat(i, "</option>");
     });
-    animalColour.innerHTML = colourOptions;
   } else if (animalKind.value === "貓") {
     catColour.forEach(function (i) {
       colourOptions += "<option value=\"".concat(i, "\">").concat(i, "</option>");
     });
-    animalColour.innerHTML = colourOptions;
-  } else {
+  } else if (animalKind.value === "其他") {
     otherColour.forEach(function (i) {
       colourOptions += "<option value=\"".concat(i, "\">").concat(i, "</option>");
     });
-    animalColour.innerHTML = colourOptions;
+  } else {
+    colourOptions = "<option value=\"\" selected>- \u52D5\u7269\u6BDB\u8272 - (\u8ACB\u5148\u9078\u64C7\u985E\u5225)</option>";
   }
+
+  animalColour.innerHTML = colourOptions;
 } // 篩選 渲染收容所名稱
 
 
