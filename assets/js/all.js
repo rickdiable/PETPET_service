@@ -399,7 +399,7 @@ pagination.addEventListener('click', function (e) {
 
     NOW_PAGE -= 1;
     $('html,body').animate({
-      scrollTop: 660
+      scrollTop: 640
     }, 0);
   } else if (e.target.classList.contains('page-next')) {
     if (NOW_PAGE === Math.ceil(paginationData.length / CARDS_PER_PAGE)) {
@@ -409,7 +409,7 @@ pagination.addEventListener('click', function (e) {
 
     NOW_PAGE += 1;
     $('html,body').animate({
-      scrollTop: 660
+      scrollTop: 640
     }, 0);
   }
 
@@ -448,7 +448,7 @@ paginator.addEventListener("click", function (e) {
   renderAnimalList(getDataByPage(NOW_PAGE)); // 將畫面捲動回篩選列
 
   $('html,body').animate({
-    scrollTop: 660
+    scrollTop: 640
   }, 0);
 }); // 圖卡及清單模式切換
 
@@ -489,6 +489,12 @@ searchForm.addEventListener('click', function (e) {
         renderPaginator(filteredData.length);
         renderAnimalList(getDataByPage(NOW_PAGE));
         animalId.value = "";
+        var SelectArr = $("select");
+
+        for (var i = 0; i < SelectArr.length; i++) {
+          SelectArr[i].options[0].selected = true;
+        }
+
         totalNum.textContent = "\u7576\u524D\u6AA2\u7D22\u5171\u6709 ".concat(filteredData.length, " \u500B\u6BDB\u5B69");
       }
     }
@@ -498,10 +504,10 @@ searchForm.addEventListener('click', function (e) {
     filteredData = [];
     NOW_PAGE = 1; // 重置 select，使其回到選中第一個值的狀態
 
-    var SelectArr = $("select");
+    var _SelectArr = $("select");
 
-    for (var i = 0; i < SelectArr.length; i++) {
-      SelectArr[i].options[0].selected = true;
+    for (var _i4 = 0; _i4 < _SelectArr.length; _i4++) {
+      _SelectArr[_i4].options[0].selected = true;
     } // 重置 input，使其為空
 
 
