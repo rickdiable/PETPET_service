@@ -213,7 +213,7 @@ window.addEventListener('scroll', function () {
 arrowUp.addEventListener('click', function (e) {
   e.preventDefault();
   $('html,body').animate({
-    scrollTop: 660
+    scrollTop: 640
   }, 100);
 }); // 渲染資料畫面至卡片或清單，需判斷狀態，並渲染該模式的型態
 
