@@ -208,6 +208,13 @@ function renderShelterName() {
 window.addEventListener('scroll', function () {
   var scrollTop = window.scrollY;
   if (scrollTop > 360) arrowUp.classList.remove('d-none');else arrowUp.classList.add('d-none');
+}); // 上滑箭頭點擊上滑
+
+arrowUp.addEventListener('click', function (e) {
+  e.preventDefault();
+  $('html,body').animate({
+    scrollTop: 660
+  }, 100);
 }); // 渲染資料畫面至卡片或清單，需判斷狀態，並渲染該模式的型態
 
 function renderAnimalList(data) {
