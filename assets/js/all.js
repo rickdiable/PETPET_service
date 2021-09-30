@@ -131,12 +131,16 @@ var data = [];
 var filteredData = [];
 var dogColour = ["咖啡色", "黑黃色", "黑棕色", "黑色", "黑白色", "棕黑色", "白色", "棕色", "黃色", "灰色", "虎斑色", "花色", "米色", "黑灰色", "黃白色", "棕白色", "黃虎斑色", "虎斑白色", "棕灰色", "黑虎斑色", "三花色", "灰白色", "花白色", "咖啡白色", "灰黑色", "咖啡棕色", "咖啡黑色"];
 var catColour = ["虎斑色", "三花色", "黑白色", "黑黃色", "黑色", "虎斑白色", "黃白色", "花色", "黃虎斑色", "黃色", "灰白色", "黑虎斑色", "黑棕色", "灰色", "白色", "灰黑色", "咖啡棕色", "米色", "棕灰色", "黑灰色", "咖啡黑色", "棕黑色", "咖啡色", "花白色", "棕色", "棕白色"];
-var otherColour = ["白色", "黑色"];
+var otherColour = ["白色", "黑色", "花色"];
 var shelter = ["新北市板橋區公立動物之家", "屏東縣公立犬貓中途之家", "臺北市動物之家", "臺東縣動物收容中心", "彰化縣流浪狗中途之家", "桃園市動物保護教育園區", "澎湖縣流浪動物收容中心", "新北市中和區公立動物之家", "基隆市寵物銀行", "花蓮縣流浪犬中途之家", "苗栗縣生態保育教育中心(動物收容所)", "雲林縣流浪動物收容所", "宜蘭縣流浪動物中途之家", "高雄市燕巢動物保護關愛園區", "臺南市動物之家善化站", "新北市八里區公立動物之家", "臺南市動物之家灣裡站", "新竹縣公立動物收容所", "金門縣動物收容中心", "高雄市壽山動物保護教育園區", "新竹市動物保護教育園區", "南投縣公立動物收容所", "新北市五股區公立動物之家", "臺中市動物之家后里園區", "新北市新店區公立動物之家", "新北市淡水區公立動物之家", "新北市政府動物保護防疫處", "嘉義縣流浪犬中途之家", "新北市瑞芳區公立動物之家", "嘉義市動物保護教育園區", "臺中市動物之家南屯園區", "連江縣流浪犬收容中心", "新北市三芝區公立動物之家"];
-var modalHTML = ""; // DOM
+var modalHTML = "";
+var filters = {
+  animal_kind: [],
+  animal_colour: [],
+  shelter_name: [],
+  animal_id: []
+}; // DOM
 
-var animalKind = document.querySelector('#animalKind');
-var animalColour = document.querySelector('#animalColour');
 var displayMode = document.querySelector("#display-mode-container");
 var cardMode = document.querySelector("#card-mode");
 var listMode = document.querySelector("#list-mode");
@@ -150,7 +154,14 @@ var paginator = document.querySelector("#paginator");
 var watchMore = document.querySelector(".btn-watch-more");
 var pagination = document.querySelector(".pagination");
 var totalNum = document.querySelector("#totalNum");
-var arrowUp = document.querySelector(".arrow-up"); // Status
+var arrowUp = document.querySelector(".arrow-up");
+var searchForm = document.querySelector("#searchForm");
+var btnSearch = document.querySelector("#btn-search");
+var animalKind = document.querySelector('#animalKind');
+var animalColour = document.querySelector('#animalColour');
+var shelterName = document.querySelector('#shelterName');
+var animalId = document.querySelector("#animalId");
+var textNoData = document.querySelector(".text-no-data"); // Status
 
 var CARDS_PER_PAGE = 12; //希望一頁有幾張卡片
 
@@ -159,14 +170,14 @@ var MODE = "card"; //預設模式為卡片模式
 var NOW_PAGE = 1; //存放當前頁面
 
 var paginatorLength = 11; // 想顯示幾個頁碼
-// 監聽
+// 監聽 當選擇動物種類時顯示該動物類別的毛色
 
-animalKind.addEventListener('change', changeColourOption); // 篩選 點選動物種類時顯示該動物類別的毛色供查詢
+animalKind.addEventListener('change', changeColourOption);
 
 function changeColourOption() {
-  var colourOptions = "<option value=\"\u52D5\u7269\u6BDB\u8272\" selected>- \u52D5\u7269\u6BDB\u8272 -</option>";
+  var colourOptions = "<option value=\"\" selected>- \u52D5\u7269\u6BDB\u8272 -</option>";
 
-  if (animalKind.value === "犬") {
+  if (animalKind.value === "狗") {
     dogColour.forEach(function (i) {
       colourOptions += "<option value=\"".concat(i, "\">").concat(i, "</option>");
     });
@@ -185,10 +196,8 @@ function changeColourOption() {
 } // 篩選 渲染收容所名稱
 
 
-var shelterName = document.querySelector('#shelterName');
-
 function renderShelterName() {
-  var str = "<option value=\"\u6536\u5BB9\u6240\" selected>- \u6536\u5BB9\u6240 -</option>";
+  var str = "<option value=\"\" selected>- \u6536\u5BB9\u6240 -</option>";
   shelter.forEach(function (i) {
     str += "<option value=\"".concat(i, "\">").concat(i, "</option>");
   });
@@ -198,7 +207,7 @@ function renderShelterName() {
 
 window.addEventListener('scroll', function () {
   var scrollTop = window.scrollY;
-  if (scrollTop > 1520) arrowUp.classList.remove('d-none');else arrowUp.classList.add('d-none');
+  if (scrollTop > 360) arrowUp.classList.remove('d-none');else arrowUp.classList.add('d-none');
 }); // 渲染資料畫面至卡片或清單，需判斷狀態，並渲染該模式的型態
 
 function renderAnimalList(data) {
@@ -269,6 +278,8 @@ function renderDetailModal(id) {
       modalData[0].animal_sex = "母";
     } else if (modalData[0].animal_sex === "M") {
       modalData[0].animal_sex = "公";
+    } else {
+      modalData[0].animal_sex = "尚未確認";
     }
 
     modalData.forEach(function (i) {
@@ -370,7 +381,15 @@ function renderPaginator(amount) {
 
 
 pagination.addEventListener('click', function (e) {
-  // e.preventDefault(); 
+  e.preventDefault();
+  var paginationData = filteredData.length ? filteredData : data; // 不是在第一或最後一頁點擊時時捲動到上方篩選列
+
+  if (NOW_PAGE === 1 || NOW_PAGE === Math.ceil(paginationData.length / CARDS_PER_PAGE)) {} else {
+    $('html,body').animate({
+      scrollTop: 660
+    }, 0);
+  }
+
   if (e.target.classList.contains('page-previous')) {
     if (NOW_PAGE === 1) {
       console.log(NOW_PAGE);
@@ -380,7 +399,7 @@ pagination.addEventListener('click', function (e) {
 
     NOW_PAGE -= 1;
   } else if (e.target.classList.contains('page-next')) {
-    if (NOW_PAGE === Math.ceil(data.length / CARDS_PER_PAGE)) {
+    if (NOW_PAGE === Math.ceil(paginationData.length / CARDS_PER_PAGE)) {
       alert('沒有下一頁囉');
       return;
     }
@@ -388,17 +407,8 @@ pagination.addEventListener('click', function (e) {
     NOW_PAGE += 1;
   }
 
-  renderPaginator(data.length);
-  renderAnimalList(getDataByPage(NOW_PAGE)); // 不是在第一或最後一頁點擊時時捲動到上方篩選列
-
-  if (NOW_PAGE === 1 || Math.ceil(data.length / CARDS_PER_PAGE)) {
-    return;
-  } else {
-    var target = $(this).attr("href");
-    $('html,body').animate({
-      scrollTop: $(target).offset().top
-    }, 0);
-  }
+  renderPaginator(paginationData.length);
+  renderAnimalList(getDataByPage(NOW_PAGE));
 }); // 回傳當前分頁的資料陣列
 
 function getDataByPage(page) {
@@ -438,7 +448,6 @@ paginator.addEventListener("click", function (e) {
 
 displayMode.addEventListener('click', function displayModeSwitch(e) {
   e.preventDefault();
-  console.log(data);
 
   if (e.target.matches("#card-mode")) {
     MODE = "card";
@@ -447,7 +456,120 @@ displayMode.addEventListener('click', function displayModeSwitch(e) {
     MODE = "list";
     renderAnimalList(getDataByPage(NOW_PAGE));
   }
-}); // 用 fetch 從 API 拿取資料並做部分資料處理
+}); // 搜尋功能
+
+searchForm.addEventListener('click', function (e) {
+  e.preventDefault(); // 取得輸入內容
+
+  var kind = animalKind.value;
+  var colour = animalColour.value;
+  var shelter = shelterName.value;
+  var id = animalId.value.trim();
+
+  if (e.target.classList.contains('btn-search')) {
+    // 若點擊查詢按鈕
+    if (kind === "" && colour === "" && shelter === "" && id === "") {
+      // 沒填入任何條件時，提醒使用者必須設定條件
+      alert('請設定搜尋條件');
+      return;
+    } else {
+      console.log(filters);
+      output();
+      NOW_PAGE = 1;
+
+      if (filteredData.length === 0) {
+        alert('沒有符合條件的毛孩');
+        animalId.value = "";
+      } else {
+        renderPaginator(filteredData.length);
+        renderAnimalList(getDataByPage(NOW_PAGE));
+        animalId.value = "";
+        totalNum.textContent = "\u7576\u524D\u6AA2\u7D22\u5171\u6709 ".concat(filteredData.length, " \u500B\u6BDB\u5B69");
+      }
+    }
+  } else if (e.target.classList.contains('btn-search-cancel')) {
+    // 若點擊取消按鈕
+    // 清空篩選陣列
+    filteredData = [];
+    NOW_PAGE = 1; // 重置 select，使其回到選中第一個值的狀態
+
+    var SelectArr = $("select");
+
+    for (var i = 0; i < SelectArr.length; i++) {
+      SelectArr[i].options[0].selected = true;
+    } // 重置 input，使其為空
+
+
+    animalId.value = ""; // 重置篩選條件
+
+    filters = {
+      animal_kind: [],
+      animal_colour: [],
+      shelter_name: [],
+      animal_id: []
+    }; // 重新渲染畫面
+
+    renderPaginator(data.length);
+    renderAnimalList(getDataByPage(NOW_PAGE));
+    totalNum.textContent = "\u7576\u524D\u6AA2\u7D22\u5171\u6709 ".concat(data.length, " \u500B\u6BDB\u5B69");
+  } else {
+    return;
+  }
+}); // 設定篩選條件變數 filters 中的內容
+
+searchForm.addEventListener('change', function () {
+  var kind = [];
+  var colour = [];
+  var shelter = [];
+  var id = [];
+  kind.push(animalKind.value);
+  colour.push(animalColour.value);
+  shelter.push(shelterName.value);
+  id.push(animalId.value.trim()); // 去除使用者可能誤打的空格
+
+  if (kind != "") {
+    filters.animal_kind = kind;
+  } else {
+    filters.animal_kind = [];
+  }
+
+  if (colour != "") {
+    filters.animal_colour = colour;
+  } else {
+    filters.animal_colour = [];
+  }
+
+  if (shelter != "") {
+    filters.shelter_name = shelter;
+  } else {
+    filters.shelter_name = [];
+  }
+
+  if (id != "") {
+    filters.animal_id = id;
+  } else {
+    filters.animal_id = [];
+  }
+}); // 篩選方法，依據帶入的條件不同做多條件多數據篩選
+
+function multiFilter(array, filters) {
+  // 抓出所有篩選條件
+  var filterKeys = Object.keys(filters); // 動態驗證所有符合條件
+
+  return array.filter(function (item) {
+    return filterKeys.every(function (key) {
+      // 忽略未選擇選項的條件
+      if (!filters[key].length) return true;
+      return !!~filters[key].indexOf(item[key]);
+    });
+  });
+}
+
+function output() {
+  filteredData = multiFilter(data, filters);
+  console.log(filteredData);
+} // 用 fetch 從 API 拿取資料並做部分資料處理
+
 
 fetch(INDEX_URL).then(function (res) {
   return res.json();
@@ -464,14 +586,21 @@ fetch(INDEX_URL).then(function (res) {
       i.animal_sex = "母";
     } else if (i.animal_sex === "M") {
       i.animal_sex = "公";
+    } else {
+      i.animal_sex = "尚未確認";
     } // 若圖片網址為空值以 noimg 圖片代替
 
 
     if (i.album_file === "") {
       i.album_file = "./assets/images/noimg.png";
-    }
+    } // 將流水編號改為字串
+
+
+    i.animal_id = String(i.animal_id);
   });
+  console.log(data);
   renderPaginator(data.length);
   renderAnimalList(getDataByPage(NOW_PAGE));
+  totalNum.textContent = "\u7576\u524D\u6AA2\u7D22\u5171\u6709 ".concat(data.length, " \u500B\u6BDB\u5B69");
 });
 //# sourceMappingURL=all.js.map

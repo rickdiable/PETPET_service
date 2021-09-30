@@ -68,12 +68,12 @@
   </div>
 
   <div class="container-fluid bg-warning py-4 mb-11 mb-lg-13">
-    <form id="filterForm" class="form-row align-items-center" action="#">
+    <form id="searchForm" class="form-row align-items-center" action="#">
       <h3 class="font-m mb-2 col-12">請輸入查詢條件<span class="font-s font-weight-light"> *可用單一條件查詢</span></h3>
       <div class="col-7 col-md-3 col-lg-2 mb-2 mb-lg-0">
         <select id="animalKind" class="custom-select">
-          <option value="動物類別" selected>- 動物類別 -</option>
-          <option value="犬">犬</option>
+          <option value="" selected>- 動物類別 -</option>
+          <option value="狗">狗</option>
           <option value="貓">貓</option>
           <option value="其他">其他</option>
         </select>
@@ -81,7 +81,7 @@
 
       <div class="col-7 col-md-3 col-lg-2 mb-2 mb-lg-0">
         <select id="animalColour" class="custom-select">
-          <option value="動物毛色" selected>- 動物毛色 -</option>
+          <option value="" selected>- 動物毛色 -</option>
           <!-- <option value="三花">三花</option>
           <option value="斑點">斑點</option>
           <option value="橘">橘</option>
@@ -92,7 +92,7 @@
       <div class="col-9 col-md-5 offset-md-1 col-lg-3 offset-lg-0 mb-2 mb-lg-0">
         <select id="shelterName" class="custom-select">
           <option value="收容所" selected>- 收容所 -</option>
-          <!-- <option value="新北市政府動物保護防疫處">新北市政府動物保護防疫處</option>
+          <!-- <option value="">新北市政府動物保護防疫處</option>
           <option value="新北市新店區公立動物之家">新北市新店區公立動物之家</option>
           <option value="新北市板橋區公立動物之家">新北市板橋區公立動物之家</option>
           <option value="新北市中和區公立動物之家">新北市中和區公立動物之家</option>  -->
@@ -100,12 +100,13 @@
       </div>
 
       <div class="col-10 col-md-5 col-lg-2 mb-2 mb-lg-0">
-        <input id="animal_subid" class="form-control mt-0" type="text" placeholder="- 以流水編號查詢 -" />
+        <input id="animalId" class="form-control mt-0" type="text" placeholder="- 以流水編號查詢 -" />
       </div>
 
       <div class="col-12 col-md-5 offset-md-2 col-lg-3 offset-lg-0 text-right">
-        <a href="#" class="btn btn-primary-lighten col-4 col-md-5 col-lg-4 white-space-nowrap mr-md-2">取消</a>
-        <a href="#" class="btn btn-secondary col-4 col-md-5 col-lg-4 white-space-nowrap">查詢</a>
+        <a href="#"
+          class="btn-search-cancel btn btn-primary-lighten col-4 col-md-5 col-lg-4 white-space-nowrap mr-md-2">取消</a>
+        <a href="#" class="btn-search btn btn-secondary col-4 col-md-5 col-lg-4 white-space-nowrap">查詢</a>
       </div>
 
     </form>
@@ -115,7 +116,7 @@
 <div class="container mb-11 mb-lg-13">
 
   <div class="d-flex justify-content-between font-m font-weight-md-bold mb-7 mb-md-11">
-    <p id="totalNum">當前檢索共有 7777 筆資料</p>
+    <p id="totalNum">當前檢索共有 7777 個毛孩</p>
     <div class="d-flex" id="display-mode-container">
       <a href="#" class="mr-5">
         <i class="fa fa-th fa-lg" id="card-mode" aria-hidden="true"></i>
@@ -316,7 +317,7 @@
   <nav class="mt-8 d-none d-md-block" aria-label="Page navigation">
     <div class="pagination justify-content-center">
       <div class="page-item">
-        <a class="page-link page-previous" href="#filterForm" aria-label="Previous">
+        <a class="page-link page-previous" href="#" aria-label="Previous">
           <span class="page-previous" aria-hidden="true">&laquo;</span>
         </a>
       </div>
@@ -326,7 +327,7 @@
         <div class="page-item"><a class="page-link" href="#">3</a></div>
       </div>
       <div class="page-item">
-        <a class="page-link page-next" href="#filterForm" aria-label="Next">
+        <a class="page-link page-next" href="#" aria-label="Next">
           <span class="page-next" aria-hidden="true">&raquo;</span>
         </a>
       </div>

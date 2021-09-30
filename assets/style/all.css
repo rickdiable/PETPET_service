@@ -14394,6 +14394,9 @@ ol {
 }
 
 .arrow-up {
+  -webkit-transition-duration: 1s;
+       -o-transition-duration: 1s;
+          transition-duration: 1s;
   right: 2vw;
   bottom: 10vh;
   z-index: 100;
