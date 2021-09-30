@@ -604,7 +604,6 @@ function output() {
 
 function combinedAllColour() {
   allColour = _toConsumableArray(new Set([].concat(dogColour, catColour, otherColour)));
-  console.log(allColour);
 } // 用 fetch 從 API 拿取資料並做部分資料處理
 
 
