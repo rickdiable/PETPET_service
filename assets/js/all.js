@@ -122,6 +122,18 @@ window.addEventListener('scroll', function () {
 });
 "use strict";
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 // URL
 var BASE_URL = "https://data.coa.gov.tw";
 var INDEX_URL = BASE_URL + "/api/v1/AnimalRecognition/";
@@ -132,6 +144,7 @@ var filteredData = [];
 var dogColour = [];
 var catColour = [];
 var otherColour = [];
+var allColour = [];
 var shelter = [];
 var modalHTML = "";
 var filters = {
@@ -190,18 +203,25 @@ function changeColourOption() {
       colourOptions += "<option value=\"".concat(i, "\">").concat(i, "</option>");
     });
   } else {
-    colourOptions = "<option value=\"\" selected>- \u52D5\u7269\u6BDB\u8272 - (\u8ACB\u5148\u9078\u64C7\u985E\u5225)</option>";
+    allColour.forEach(function (i) {
+      colourOptions += "<option value=\"".concat(i, "\">").concat(i, "</option>");
+    });
   }
 
   animalColour.innerHTML = colourOptions;
-} // 篩選 渲染收容所名稱
+} // 載入後渲染收容所及全部毛色
 
 
-function renderShelterName() {
+function renderShelterAndColour() {
   var str = "<option value=\"\" selected>- \u6536\u5BB9\u6240 -</option>";
   shelter.forEach(function (i) {
     str += "<option value=\"".concat(i, "\">").concat(i, "</option>");
   });
+  var colourOptions = "<option value=\"\" selected>- \u52D5\u7269\u6BDB\u8272 -</option>";
+  allColour.forEach(function (i) {
+    colourOptions += "<option value=\"".concat(i, "\">").concat(i, "</option>");
+  });
+  animalColour.innerHTML = colourOptions;
   shelterName.innerHTML = str;
 } // 上滑箭頭捲動後顯示狀態切換
 
@@ -579,6 +599,12 @@ function multiFilter(array, filters) {
 
 function output() {
   filteredData = multiFilter(data, filters);
+} // 各類別毛色資料載入後將所有毛色進行不重複值合併
+
+
+function combinedAllColour() {
+  allColour = _toConsumableArray(new Set([].concat(dogColour, catColour, otherColour)));
+  console.log(allColour);
 } // 用 fetch 從 API 拿取資料並做部分資料處理
 
 
@@ -626,8 +652,10 @@ fetch(INDEX_URL).then(function (res) {
         otherColour.push(i.animal_colour);
       }
     }
-  });
-  renderShelterName();
+  }); // 各類別毛色資料載入後將所有毛色進行不重複值合併
+
+  combinedAllColour();
+  renderShelterAndColour();
   renderPaginator(data.length);
   renderAnimalList(getDataByPage(NOW_PAGE));
   totalNum.textContent = "\u7576\u524D\u6AA2\u7D22\u5171\u6709 ".concat(data.length, " \u500B\u6BDB\u5B69");
