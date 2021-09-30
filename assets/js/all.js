@@ -393,7 +393,6 @@ pagination.addEventListener('click', function (e) {
 
   if (e.target.classList.contains('page-previous')) {
     if (NOW_PAGE === 1) {
-      console.log(NOW_PAGE);
       alert('已經在第一頁了');
       return;
     }
