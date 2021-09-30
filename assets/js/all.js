@@ -391,12 +391,6 @@ pagination.addEventListener('click', function (e) {
   e.preventDefault();
   var paginationData = filteredData.length ? filteredData : data; // 不是在第一或最後一頁點擊時時捲動到上方篩選列
 
-  if (NOW_PAGE === 1 || NOW_PAGE === Math.ceil(paginationData.length / CARDS_PER_PAGE)) {} else {
-    $('html,body').animate({
-      scrollTop: 660
-    }, 0);
-  }
-
   if (e.target.classList.contains('page-previous')) {
     if (NOW_PAGE === 1) {
       console.log(NOW_PAGE);
@@ -405,6 +399,9 @@ pagination.addEventListener('click', function (e) {
     }
 
     NOW_PAGE -= 1;
+    $('html,body').animate({
+      scrollTop: 660
+    }, 0);
   } else if (e.target.classList.contains('page-next')) {
     if (NOW_PAGE === Math.ceil(paginationData.length / CARDS_PER_PAGE)) {
       alert('沒有下一頁囉');
@@ -412,6 +409,9 @@ pagination.addEventListener('click', function (e) {
     }
 
     NOW_PAGE += 1;
+    $('html,body').animate({
+      scrollTop: 660
+    }, 0);
   }
 
   renderPaginator(paginationData.length);
