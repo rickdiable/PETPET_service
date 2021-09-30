@@ -207,7 +207,7 @@ function renderShelterName() {
 
 window.addEventListener('scroll', function () {
   var scrollTop = window.scrollY;
-  if (scrollTop > 360) arrowUp.classList.remove('d-none');else arrowUp.classList.add('d-none');
+  if (scrollTop > 800) arrowUp.classList.remove('d-none');else arrowUp.classList.add('d-none');
 }); // 上滑箭頭點擊上滑
 
 arrowUp.addEventListener('click', function (e) {
