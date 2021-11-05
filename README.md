@@ -1,6 +1,10 @@
 ## DEMO 操作說明
-切版
+- 切版作品
 ![text](https://github.com/rickdiable/PETPET_service/blob/main/app/assets/images/instructions-index.jpeg?raw=true)
+
+- JavaScript 作品
+![text](https://github.com/rickdiable/PETPET_service/blob/main/app/assets/images/instructions-adopt.jpeg?raw=true)
+
 
 ## 指令列表
 
