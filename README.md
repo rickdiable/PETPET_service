@@ -1,6 +1,6 @@
 ## DEMO 操作說明
 切版
-![](https://github.com/rickdiable/PETPET_service/tree/main/app/assets/images/instructions-index.jpeg)
+![text](https://github.com/rickdiable/PETPET_service/blob/main/app/assets/images/instructions-index.jpeg?raw=true)
 
 ## 指令列表
 
