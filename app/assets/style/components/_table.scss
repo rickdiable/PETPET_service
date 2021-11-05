@@ -1,0 +1,13 @@
+.table-adopt-img {
+  width: 120px;
+  height: 120px;
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}
+
+.table-adopt-sm-d-none{
+  @include media-breakpoint-down(sm){
+    display: none;
+  }
+}
+

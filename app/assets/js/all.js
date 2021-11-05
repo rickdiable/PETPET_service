@@ -22,7 +22,6 @@ AOS.init({
 $(document).on("click",".link-arrow",function(e){
   e.preventDefault();
   var target = $(this).attr("href");
-  // console.log(target);
   $('html,body').animate({
     scrollTop: $(target).offset().top
   },500);
@@ -62,25 +61,25 @@ $(document).ready(function(){
 
 
 // carousel 點擊更換大圖網址(切換圖片)
-function replaceUrl(e){
-  const carouselActive = document.querySelector('.carousel-item-active');
-  const carouselArea = document.querySelector('.carousel');
-  carouselArea.addEventListener('click', replaceUrl);
-  console.log(e.target.getAttribute('src'));
-  let url = e.target.getAttribute('src');
-  if(e.target.classList.contains('carousel-items-img')){
-    console.log("點到我了");
-    carouselActive.setAttribute('src',url)
-  }
-    // 避免轉址
-    e.preventDefault();
-}
+// function replaceUrl(e){
+//   const carouselActive = document.querySelector('.carousel-item-active');
+//   const carouselArea = document.querySelector('.carousel');
+//   carouselArea.addEventListener('click', replaceUrl);
+//   console.log(e.target.getAttribute('src'));
+//   let url = e.target.getAttribute('src');
+//   if(e.target.classList.contains('carousel-items-img')){
+//     console.log("點到我了");
+//     carouselActive.setAttribute('src',url)
+//   }
+//     // 避免轉址
+//     e.preventDefault();
+// }
 
 // jq 寫法
-  // $(".carousel-items a").click(function(event) {
-  //   $(".carousel-item-active").attr("src", $(this).attr('href'));
-  //   event.preventDefault(); // 避免轉址，也可使用 return false;
-  // });
+  $(".carousel-items a").click(function(event) {
+    $(".carousel-item-active").attr("src", $(this).attr('href'));
+    event.preventDefault(); // 避免轉址，也可使用 return false;
+  });
   
   // modal
   $('.modal').css('overflow-y', 'auto');

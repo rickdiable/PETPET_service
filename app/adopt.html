@@ -5,7 +5,6 @@ engine: ejs
 current: adopt
 footer: footer
 ---
-
 <header>
   <div class="container mb-3 mb-md-11">
     <div class="row flex-row-reverse py-0 py-md-11">
@@ -22,45 +21,366 @@ footer: footer
   </div>
 
   <div class="container-fluid bg-warning py-4 mb-11 mb-lg-13">
-    <form class="form-row align-items-center" action="#">
-      <div class="col-3 mb-2">
-        <select class="custom-select">
-          <option value="動物類別" selected>- 動物類別 -</option>
-          <option value="犬">犬</option>
+    <form id="searchForm" class="form-row align-items-center" action="#">
+      <h3 class="font-m mb-2 col-12">請輸入查詢條件<span class="font-s font-weight-light"> *可用單一條件查詢</span></h3>
+      <div class="col-7 col-md-3 col-lg-2 mb-2 mb-lg-0">
+        <select id="animalKind" class="custom-select">
+          <option value="" selected>- 動物類別 -</option>
+          <option value="狗">狗</option>
           <option value="貓">貓</option>
           <option value="其他">其他</option>
         </select>
       </div>
 
-      <div class="col-3 mb-2">
-        <select class="custom-select">
-          <option value="動物品種" selected>- 動物品種 -</option>
-          <option value="混種犬">混種犬</option>
-          <option value="博美">博美</option>
-          <option value="柴犬">柴犬</option>
-          <option value="哈士奇">哈士奇</option>
+      <div class="col-7 col-md-3 col-lg-2 mb-2 mb-lg-0">
+        <select id="animalColour" class="custom-select">
+          <option value="" selected>- 動物毛色 -</option>
+          <!-- <option value="三花">三花</option>
+          <option value="斑點">斑點</option>
+          <option value="橘">橘</option>
+          <option value="白">白</option> -->
         </select>
       </div>
 
-      <div class="col-6 col-md-5 offset-md-1 mb-2">
-        <select class="custom-select">
+      <div class="col-9 col-md-5 offset-md-1 col-lg-3 offset-lg-0 mb-2 mb-lg-0">
+        <select id="shelterName" class="custom-select">
           <option value="收容所" selected>- 收容所 -</option>
-          <option value="新北市政府動物保護防疫處">新北市政府動物保護防疫處</option>
+          <!-- <option value="">新北市政府動物保護防疫處</option>
           <option value="新北市新店區公立動物之家">新北市新店區公立動物之家</option>
           <option value="新北市板橋區公立動物之家">新北市板橋區公立動物之家</option>
-          <option value="新北市中和區公立動物之家">新北市中和區公立動物之家</option>
+          <option value="新北市中和區公立動物之家">新北市中和區公立動物之家</option>  -->
         </select>
       </div>
 
-      <div class="col-5">
-        <input id="animal_subid" class="form-control mt-0" type="text" placeholder="請輸入收容編號" />
+      <div class="col-10 col-md-5 col-lg-2 mb-2 mb-lg-0">
+        <input id="animalId" class="form-control mt-0" type="text" placeholder="- 以流水編號查詢 -" />
       </div>
 
-      <div class="col-5 offset-2 text-right">
-        <a href="#" class="btn btn-secondary col-5 col-lg-4 white-space-nowrap mr-md-2">取消</a>
-        <a href="#" class="btn btn-secondary col-5 col-lg-4 white-space-nowrap">查詢</a>
+      <div class="col-12 col-md-5 offset-md-2 col-lg-3 offset-lg-0 text-right">
+        <a href="#"
+          class="btn-search-cancel btn btn-primary-lighten col-4 col-md-5 col-lg-4 white-space-nowrap mr-md-2">取消</a>
+        <a href="#" class="btn-search btn btn-secondary col-4 col-md-5 col-lg-4 white-space-nowrap">查詢</a>
       </div>
 
     </form>
   </div>
 </header>
+
+<div class="container mb-11 mb-lg-13">
+
+  <div class="d-flex justify-content-between font-m font-weight-md-bold mb-7 mb-md-11">
+    <p id="totalNum">當前檢索共有 個毛孩</p>
+    <div class="d-flex" id="display-mode-container">
+      <a href="#" class="mr-5">
+        <i class="fa fa-th fa-lg" id="card-mode" aria-hidden="true"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-bars fa-lg" id="list-mode" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+
+  <div id="dataPanel">
+    <!-- 圖卡式介面 -->
+    <ul id="displayCard" class="row card-group mb--3 mb-md--5 mb-lg--8">
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <img src="./assets/images/loading.gif">
+      </div>
+      <!-- <li class="card-group-item col-6 col-md-4 col-lg-3 mb-10 hvr-bob">
+        <div class="card shadow bg-gray-100">
+          <h4 class="text-center bg-warning">流水編號 animal_subid</h4>
+          <div class="custom-adopt-card-img-top"
+            style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/4879a956-202a-4129-9a71-b62c81637e82_org.jpg') no-repeat 50% 50% / contain;">
+          </div>
+          <ul class="card-body py-3 px-3 px-lg-4">
+            <li class="mb-1">
+              <span class="font-weight-bold">類別: </span>犬
+            </li>
+            <li class="mb-1">
+              <span class="font-weight-bold">毛色: </span>黑
+            </li>
+            <li class="mb-1">
+              <span class="font-weight-bold">性別: </span>母
+            </li>
+            <li class="mb-1">
+              <span class="font-weight-bold">來源: </span>大同鄉
+            </li>
+            <li class="mb-1">
+              <span class="font-weight-bold">我在: </span>
+              <p class="d-block">新北市八里區公立動物之家</p>
+            </li>
+          </ul>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" data-toggle="modal" data-target="#adopt-modal"
+              class="d-flex justify-content-center align-items-center card-link w-50 py-3">
+              <p>詳細資料</p>
+            </a>
+            <a href="#" class="card-link w-50 text-center text-secondary py-3">
+              <p>我有意願認養</p>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li class="card-group-item col-6 col-md-4 col-lg-3 mb-10 hvr-bob">
+        <div class="card shadow bg-gray-100">
+          <h4 class="text-center bg-warning">asj12312sada</h4>
+          <div class="custom-adopt-card-img-top"
+            style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/c86b910c-08f3-46dd-9d83-efc90e303322_org.jpg') no-repeat 50% 50% / contain;">
+          </div>
+          <ul class="card-body py-3 px-3 px-lg-4">
+            <li class="mb-1">
+              <span class="font-weight-bold">類別: </span>貓
+            </li>
+            <li class="mb-1">
+              <span class="font-weight-bold">毛色: </span>乳牛
+            </li>
+            <li class="mb-1">
+              <span class="font-weight-bold">性別: </span>母
+            </li>
+            <li class="mb-1">
+              <span class="font-weight-bold">來源: </span>大同鄉
+            </li>
+            <li class="mb-1">
+              <span class="font-weight-bold">我在: </span>
+              <p class="d-block">新北市八里區公立動物之家</p>
+            </li>
+          </ul>
+          <div class="bg-white d-flex mt-auto">
+            <a href="#" data-toggle="modal" data-target="#adopt-modal2"
+              class="d-flex justify-content-center align-items-center card-link w-50 py-3">
+              <p>詳細資料</p>
+            </a>
+            <a href="#" class="card-link w-50 text-center text-secondary py-3">
+              <p>我有意願認養</p>
+            </a>
+          </div>
+        </div>
+      </li> -->
+    </ul>
+    <!-- 圖卡式介面 -->
+
+    <!-- 清單式界面 -->
+    <div class="container pt-3 d-md-none d-none" id="displayListSmall">
+
+      <!-- <div class="row d-flex justify-content-center align-items-center border-top py-2">
+        <div class="col-3 table-adopt-img"
+          style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/c86b910c-08f3-46dd-9d83-efc90e303322_org.jpg') no-repeat 50% 50% / contain;">
+        </div>
+        <ul class="col-6">
+          <li>
+            <span class="font-weight-bold">類別: </span>貓
+          </li>
+          <li>
+            <span class="font-weight-bold">毛色: </span>乳牛
+          </li>
+          <li>
+            <span class="font-weight-bold">性別: </span>母
+          </li>
+          <li>
+            <span class="font-weight-bold">我在: </span>
+            <p>新北市八里區公立動物之家</p>
+          </li>
+        </ul>
+        <div class="col-3">
+          <div class="bg-white d-flex align-items-center row">
+            <a href="#" data-toggle="modal" data-target="#adopt-modal" class="col-12 btn btn-warning mb-1">看詳細</a>
+            <a href="#" class="btn btn-block btn-secondary col-12">欲認養</a>
+          </div>
+        </div>
+      </div> -->
+
+    </div>
+
+    <table class="table text-center d-none table-adopt-sm-d-none">
+      <thead>
+        <tr class="bg-warning">
+          <th class="border-bottom-0" scope="col"></th>
+          <th class="border-bottom-0" scope="col">類別</th>
+          <th class="border-bottom-0" scope="col">毛色</th>
+          <th class="border-bottom-0" scope="col">性別</th>
+          <th class="border-bottom-0" scope="col">來源</th>
+          <th class="border-bottom-0" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody id="displayList">
+        <!-- <tr>
+          <th scope="row d-flex flex-column justify-content-center">
+            <div class="table-adopt-img"
+              style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/c86b910c-08f3-46dd-9d83-efc90e303322_org.jpg') no-repeat 50% 50% / contain;">
+            </div>
+          </th>
+          <td class="align-middle">貓</td>
+          <td class="align-middle">乳牛</td>
+          <td class="align-middle">母</td>
+          <td class="align-middle">新北市龜山區公立動物之家</td>
+          <td class="align-middle">
+            <div class="bg-white d-flex align-items-center">
+              <a href="#" data-toggle="modal" data-target="#adopt-modal2" class="btn btn-warning w-50 mr-2 ">
+                詳細資料
+              </a>
+              <a href="#" class="btn btn-block btn-secondary w-50">我有意願認養</a>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">
+            <div class="table-adopt-img"
+              style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/4879a956-202a-4129-9a71-b62c81637e82_org.jpg') no-repeat 50% 50% / contain;">
+            </div>
+          </th>
+          <td class="align-middle">狗</td>
+          <td class="align-middle">黑</td>
+          <td class="align-middle">公</td>
+          <td class="align-middle">新北市龜山區公立動物之家</td>
+          <td class="align-middle">
+            <div class="bg-white d-flex">
+              <a href="#" data-toggle="modal" data-target="#adopt-modal2" class="btn btn-warning w-50 mr-2">
+                詳細資料
+              </a>
+              <a href="#" class="btn btn-block btn-secondary w-50">
+                <p>我有意願認養</p>
+              </a>
+            </div>
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+    <!-- 清單式界面 -->
+  </div>
+
+  <!-- <nav class="mt-8" aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav> -->
+
+  <nav class="mt-8 d-none d-md-block" aria-label="Page navigation">
+    <div class="pagination justify-content-center">
+      <div class="page-item">
+        <a class="page-link page-previous" href="#" aria-label="Previous">
+          <span class="page-previous" aria-hidden="true">&laquo;</span>
+        </a>
+      </div>
+      <div id="paginator" class="d-flex">
+        <div class="page-item active"><a class="page-link" href="#">1</a></div>
+        <div class="page-item"><a class="page-link" href="#">2</a></div>
+        <div class="page-item"><a class="page-link" href="#">3</a></div>
+      </div>
+      <div class="page-item">
+        <a class="page-link page-next" href="#" aria-label="Next">
+          <span class="page-next" aria-hidden="true">&raquo;</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="d-block d-md-none mt-4">
+    <div class="bg-white d-flex justify-content-end align-items-center">
+      <a href="#" class="btn-detail-modal btn btn-warning btn-watch-more">點我看更多</a>
+    </div>
+  </nav>
+
+</div>
+
+<a href="#" class="arrow-up position-fixed d-none">
+  <div class="arrow-up-icon bg-warning">
+    <span class="link-arrow-icon material-icons">keyboard_double_arrow_up</span>
+  </div>
+</a>
+
+
+<!-- modal -->
+
+<div class="modal fade" id="adopt-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg container">
+    <div class="modal-content px-6 px-md-9 px-lg-8 py-6">
+      <div class="modal-body" id="adopt-modal-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="modal-title font-l mb-5" id="adopt-modal-title">認養動物資料</h5>
+          <a href="#" class="btn btn-outline-warning" data-toggle="modal" data-dismiss="modal"
+            aria-label="close">回上一頁</a>
+        </div>
+        <div class="row modal-api">
+          <div class="col-12 d-flex justify-content-center align-items-center">
+            <img src="./assets/images/loading.gif">
+          </div>
+          <!-- <div
+            class="d-flex flex-column justify-content-center bg-gray-100 col-12 col-md-6 mb-3 mb-md-0 shadow modal-adopt-img-container">
+            <div class="modal-adopt-img-height" id="adopt-modal-img"
+              style="background: url('https://asms.coa.gov.tw/AmlApp/Upload/Pic/4879a956-202a-4129-9a71-b62c81637e82_org.jpg') no-repeat 50% 50% / contain;">
+            </div>
+          </div>
+          <div class="col-12 col-md-5 ml-3 d-flex flex-column justify-content-center font-s font-md-base">
+            <ul>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">入所天數: </span>25 天
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">入所日期: </span><em>2021-09-17</em>
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">尋獲地: </span>新市區潭頂里102號
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1"></span>
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">流水編號: </span>222222
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">收容編號: </span>AA12558442
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">動物品種: </span>貓
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">性別: </span>母
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">毛色: </span>三花色
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">年齡: </span>成體
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">是否絕育: </span>尚未絕育
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1"></span>
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">所在收容所: </span>花蓮縣流浪犬中途之家
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">收容所電話: </span>06-5832399
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">收容所地址: </span>花蓮縣吉安鄉南濱路1段599號
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1"></span>
+              </li>
+              <li class="mb-1">
+                <span class="font-weight-bold mr-1">備註: </span>本站動物皆採現場互動面談後評估能否認養 不接受系統上的預約
+              </li>
+            </ul>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

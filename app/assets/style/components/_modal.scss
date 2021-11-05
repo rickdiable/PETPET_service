@@ -16,3 +16,18 @@
     width: 284px;
   }
 }
+
+.modal-adopt-img-height{
+  height: 300px;
+  @include media-breakpoint-up(sm){
+    height: 60vh;
+  }
+}
+
+.modal-adopt-img-container{
+  padding: 8px 8px;
+  height: 320px;
+  @include media-breakpoint-up(sm){
+    height: 50vh;
+  }
+}

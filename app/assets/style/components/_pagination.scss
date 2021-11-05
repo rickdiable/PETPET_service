@@ -1,0 +1,20 @@
+#paginator {
+  .page-item{
+    text-align: center;
+    width: 40px;
+  }
+  .page-link{
+    border-radius: 0;
+    padding: 10px 0;
+  }
+  .page-ellipsis{
+    width: 30px;
+  }
+  // @include media-breakpoint-down(xs){
+  //   flex-wrap: wrap;
+  //   .page-item{
+  //     margin-bottom: 4px;
+  //     width: 42px;
+  //   }
+  // }
+}

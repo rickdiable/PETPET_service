@@ -12,3 +12,15 @@
     }
   }
 }
+
+.arrow-up{
+  transition-duration: 1s;
+  right: 2vw;
+  bottom: 10vh;
+  z-index:100;
+  &-icon{
+    width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  }
+}
