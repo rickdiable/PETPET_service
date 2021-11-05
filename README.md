@@ -2,8 +2,6 @@
 切版
 ![](https://github.com/rickdiable/PETPET_service/tree/main/app/assets/images/instructions-index.jpeg)
 
-
-
 ## 指令列表
 
 - `gulp` - 執行開發模式(會開啟模擬瀏覽器並監聽相關檔案)
