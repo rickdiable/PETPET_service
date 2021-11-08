@@ -501,22 +501,19 @@ searchForm.addEventListener('click', function (e) {
       return;
     } else {
       output();
-      NOW_PAGE = 1;
 
       if (filteredData.length === 0) {
         alert('沒有符合條件的毛孩');
         animalId.value = "";
       } else {
-        renderPaginator(filteredData.length);
-        renderAnimalList(getDataByPage(NOW_PAGE));
+        // renderPaginator(filteredData.length);
+        // renderAnimalList(getDataByPage(NOW_PAGE));
         animalId.value = "";
         var SelectArr = $("select");
 
         for (var i = 0; i < SelectArr.length; i++) {
           SelectArr[i].options[0].selected = true;
         }
-
-        totalNum.textContent = "\u7576\u524D\u6AA2\u7D22\u5171\u6709 ".concat(filteredData.length, " \u500B\u6BDB\u5B69");
       }
     }
   } else if (e.target.classList.contains('btn-search-cancel')) {
@@ -599,6 +596,11 @@ function multiFilter(array, filters) {
 
 function output() {
   filteredData = multiFilter(data, filters);
+  var result = filteredData.length ? filteredData : data;
+  NOW_PAGE = 1;
+  renderPaginator(result.length);
+  renderAnimalList(getDataByPage(NOW_PAGE));
+  totalNum.textContent = "\u7576\u524D\u6AA2\u7D22\u5171\u6709 ".concat(result.length, " \u500B\u6BDB\u5B69");
 } // 各類別毛色資料載入後將所有毛色進行不重複值合併
 
 
